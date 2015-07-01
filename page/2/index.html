@@ -65,6 +65,64 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Note" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/23/Note/" class="article-date">
+  <time datetime="2014-11-23T06:33:16.000Z" itemprop="datePublished">2014-11-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Note/">Note</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/23/Note/">Note</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本文根据半年来对相关资料以及实验操作的实际体会总结而成。限于本人知识经验局限性，难免有理解错误之处。然而还是把一些不太成熟的想法写了下来。<br>最近对整个CNN的形成有了一个模糊的框架，隐约感觉以下3篇还有下面涉及到或没有涉及但我看过的文章都有深层的联系。可能由于知识有限，表达可能不尽人意，但还是想试图解释他们之间的关系。</p>
+<h3 id="概括">概括</h3><h6 id="PCA文章总结">PCA文章总结</h6><p>PCANet的文章揭示了深层网络结构的优越性，证实cascaded feature learning or extraction architectures的优越性。而且由于采用PCA的方法，不需要用迭代的方法寻优。可以从数据得到filter参数。在PCANet结构上也可以看出：如果要构建自己的网络需要理解每层的特点，根据实际情况组合网络，在别的网络中效果好的结构未必自己的网络中就好。文章称PCANet可以做baseline，说明调参技巧少，对trick等依赖少，训练效果变化小。</p>
+<h6 id="Feature_coding_for_classification文章总结">Feature coding for classification文章总结</h6><p>总结了大量降维方法。提到5个大块方法其中一个大块是manifold，流形逼近作为一种非参数模型方法，将会是一个方向。概率模型都对数据分布有较强的的假设，如果实际数据不服从假设的分布，会对效果造成影响。因此选用概率模型时要对数据分布有准确的估计。本文最后同样指出了设计特征时要考虑结合feature coding and pooling。<br>improved Fisher kernel具有目前已知最好的性能，用GMM描述概率分布</p>
+<h6 id="图嵌入">图嵌入</h6><p>这篇文章有很强的理论性。用一个框架总结PCA、LDA(linear), ISOMAP、LLE、Laplacian Eigenmap(no-linear)等降维方法。<br>特征编码中提到：高阶特征流形逼近的方法作为一种非参数模型，将更好地改善特征编码的概率密度分布估计。<br>本文给出的思路有助于改善对概率密度分布估计的困难。</p>
+<h3 id="DL相关总结">DL相关总结</h3><p>DL的核心思想是deep，深度的网络结构是提升学习效率的重要原因。以往的神经网络属于浅度学习层数少，由于深层训练在训练方法和运算能力上的突破兴起了深度学习浪潮。<br>（变换+降维）+（变换+降维）+………+（变换+降维）+（变换+降维）</p>
+<p>（非线性层ReLU目前被认为具有最好的非线性表达效果，因此在网络中比较常用。max(0,x), ln(1+ex)）原因未知？</p>
+<h6 id="DL成功的关键：">DL成功的关键：</h6><p>一方面现在的深层网络可以在高层学习到更高级的特征（语意特征），反卷积网络可视化技术证实了这一点，另一方面而稀疏表达和自编码等技术则能帮助深层网络在底层学习到比传统人工构造的特征更具有表达性的特征。</p>
+<h6 id="CNN复兴的原因：（Visualizing_and_Understanding_Convolutional_Networks）Matthew_D-_Zeiler">CNN复兴的原因：（Visualizing and Understanding Convolutional Networks）Matthew D. Zeiler</h6><ol>
+<li>拥有数以百万带标签训练集出现</li>
+<li>基于GPU训练算法的出现，使得训练复杂卷积网模型不再是奢望</li>
+<li>更好的模型调优策略（dropout）</li>
+</ol>
+<h6 id="Baidu总结的DL成功原因">Baidu总结的DL成功原因</h6><ol>
+<li>Big Data</li>
+<li>high performance computing(取得了想象不到的超越实验室的效果）</li>
+</ol>
+<p>mnist数据集本身稀疏，没有用pooling效果也好。<br>训练与测试不同（dropout、multi-scale、multi-view）大多是为了解决数据量问题。多的数据量，更多的数据。<br>Visualizing and Understanding Convolutional Networks中ImageNet 2012上在单块GTX580 GPU， 迭代70次用了12天。内存开销与时间开销都很大。</p>
+<h6 id="与PCANet的联系">与PCANet的联系</h6><p>CNN的训练过程是迭代寻优，而某些流形学习方法可以得到解析解（PCA也有在线学习算法），不需要迭代，这样训练速度将大大提升。<br>CNN训练极大程度依赖调参和trick（因为迭代，容易收敛到局部最优），得到好效果不容易。但PCA参数少，所以他说可以做baseline。<br>另一个角度来看，可以认为没有解析解的CNN会有更强大的非线性表达能力，人工干预较强的构造性网络PCANet效果会受影响。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/11/23/Note/" data-id="cibkqgz7o000hwr37337z31g4" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-Code-Torch7-Learning-torch-tutorials" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2014/11/23/Code-Torch7-Learning-torch-tutorials/" class="article-date">
@@ -106,7 +164,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/23/Code-Torch7-Learning-torch-tutorials/" data-id="cibkqftvd000mw2377bcpbtgw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/23/Code-Torch7-Learning-torch-tutorials/" data-id="cibkqgz7u000pwr37l2hdcm8u" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Torch/">Torch</a></li></ul>
@@ -131,7 +189,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Code/">Code</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LearningCaffe/">LearningCaffe</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">1</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Code/">Code</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LearningCaffe/">LearningCaffe</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Paper/">Paper</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -140,7 +198,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLAS/">BLAS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boost/">Boost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/">Caffe</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLAS/">BLAS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boost/">Boost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CNN/">CNN</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/">Caffe</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -149,7 +207,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/BLAS/" style="font-size: 10px;">BLAS</a> <a href="/tags/Boost/" style="font-size: 10px;">Boost</a> <a href="/tags/Caffe/" style="font-size: 20px;">Caffe</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Torch/" style="font-size: 10px;">Torch</a> <a href="/tags/《Deep-Learning》/" style="font-size: 15px;">《Deep Learning》</a>
+      <a href="/tags/BLAS/" style="font-size: 10px;">BLAS</a> <a href="/tags/Boost/" style="font-size: 10px;">Boost</a> <a href="/tags/CNN/" style="font-size: 10px;">CNN</a> <a href="/tags/Caffe/" style="font-size: 20px;">Caffe</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Torch/" style="font-size: 10px;">Torch</a> <a href="/tags/《Deep-Learning》/" style="font-size: 15px;">《Deep Learning》</a>
     </div>
   </div>
 
@@ -158,7 +216,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">3</span></li></ul>
     </div>
   </div>
 
