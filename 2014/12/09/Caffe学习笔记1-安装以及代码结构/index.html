@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Caffe学习笔记1-安装以及代码结构 | GanYuFei (甘宇飞)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="安装按照官网教程安装，我在 OS X 10.9 和 Ubuntu 14.04 上面都安装成功了。主要麻烦在于 glog gflags gtest 这几个依赖项是google上面的需要翻墙。由于我用Mac没有CUDA，所以安装时需要设置 CPU_ONLY := 1。
+如果不是干净的系统，安装还是有点麻烦的比如我在OS X 10.9上面，简直不是一般的麻烦，OS X 10.9 默认的编译器是clang">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Caffe学习笔记1-安装以及代码结构">
+<meta property="og:url" content="http://yoursite.com/2014/12/09/Caffe学习笔记1-安装以及代码结构/index.html">
+<meta property="og:site_name" content="GanYuFei (甘宇飞)">
+<meta property="og:description" content="安装按照官网教程安装，我在 OS X 10.9 和 Ubuntu 14.04 上面都安装成功了。主要麻烦在于 glog gflags gtest 这几个依赖项是google上面的需要翻墙。由于我用Mac没有CUDA，所以安装时需要设置 CPU_ONLY := 1。
+如果不是干净的系统，安装还是有点麻烦的比如我在OS X 10.9上面，简直不是一般的麻烦，OS X 10.9 默认的编译器是clang">
+<meta property="og:updated_time" content="2014-12-09T12:21:56.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Caffe学习笔记1-安装以及代码结构">
+<meta name="twitter:description" content="安装按照官网教程安装，我在 OS X 10.9 和 Ubuntu 14.04 上面都安装成功了。主要麻烦在于 glog gflags gtest 这几个依赖项是google上面的需要翻墙。由于我用Mac没有CUDA，所以安装时需要设置 CPU_ONLY := 1。
+如果不是干净的系统，安装还是有点麻烦的比如我在OS X 10.9上面，简直不是一般的麻烦，OS X 10.9 默认的编译器是clang">
+  
+    <link rel="alternative" href="/atom.xml" title="GanYuFei (甘宇飞)" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GanYuFei (甘宇飞)</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To improve is to change, to perfect is to change often.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Caffe学习笔记1-安装以及代码结构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/09/Caffe学习笔记1-安装以及代码结构/" class="article-date">
+  <time datetime="2014-12-09T11:51:36.000Z" itemprop="datePublished">2014-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LearningCaffe/">LearningCaffe</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Caffe学习笔记1-安装以及代码结构
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装">安装</h1><p>按照<a href="http://caffe.berkeleyvision.org/installation.html" target="_blank" rel="external">官网教程</a>安装，我在 OS X 10.9 和 Ubuntu 14.04 上面都安装成功了。主要麻烦在于 glog gflags gtest 这几个依赖项是google上面的需要翻墙。由于我用Mac没有CUDA，所以安装时需要设置 CPU_ONLY := 1。</p>
+<p><em>如果不是干净的系统，安装还是有点麻烦的比如我在OS X 10.9上面，简直不是一般的麻烦，OS X 10.9 默认的编译器是clang，所以还要修改编译器和重行编译一大堆依赖库。这方面其实网上教程很多，涵盖了各种你可能遇到的问题，多Google下问题还是可以解决的。</em></p>
+<h1 id="目录结构">目录结构</h1><p>caffe文件夹下主要文件： <code>这表示文件夹</code></p>
+<ul>
+<li><code>data</code> 用于存放下载的训练数据</li>
+<li><code>docs</code> 帮助文档</li>
+<li><code>example</code> 一些代码样例</li>
+<li><code>matlab</code> MATLAB接口文件</li>
+<li><code>python</code> Python接口文件</li>
+<li><code>model</code> 一些配置好的模型参数</li>
+<li><code>scripts</code> 一些文档和数据用到的脚本</li>
+</ul>
+<p>下面是核心代码文件夹：</p>
+<ul>
+<li><code>tools</code> 保存的源码是用于生成二进制处理程序的，caffe在训练时实际是直接调用这些二进制文件。</li>
+<li><code>include</code> Caffe的实现代码的头文件</li>
+<li><code>src</code> 实现Caffe的源文件</li>
+</ul>
+<p><strong>后面的学习主要围绕后面两个文件目录（<code>include</code>和<code>src</code>）下的代码展开</strong></p>
+<h1 id="源码结构">源码结构</h1><p>由于<code>include</code>和<code>src</code>两个目录在层次上基本一一对应因此主要分析<code>src</code>即可了解文件结构。</p>
+<p><em>这里顺便提到一个有意思的东西，我是在Sublime上面利用SublimeClang插件分析代码的（顺便推荐下这插件，值得花点时间装）。在配置的时候发现会有错误提示找不到”caffe/proto/caffe.pb.h”，去看了下果然没有，但编译的时候没有报错，说明是生成过后又删除了，查看Makefile文件后发现这里用了proto编译的，所以在”src/caffe/proto”下面用CMakeLists文件就可以编译出来了。</em></p>
+<ul>
+<li><code>src</code><ul>
+<li><code>gtest</code> google test一个用于测试的库你make runtest时看见的很多绿色RUN OK就是它，这个与caffe的学习无关，不过是个有用的库</li>
+<li><code>caffe</code> 关键的代码都在这里了<ul>
+<li><code>test</code> 用gtest测试caffe的代码</li>
+<li><code>util</code> 数据转换时用的一些代码。caffe速度快，很大程度得益于内存设计上的优化（blob数据结构采用proto）和对卷积的优化（部分与im2col相关）[1]。</li>
+<li><code>proto</code> 即所谓的“Protobuf”[2]，全称“Google Protocol Buffer”，是一种数据存储格式，帮助caffe提速。</li>
+<li><code>layers</code> 深度神经网络中的基本结构就是一层层互不相同的网络了，这个文件夹下的源文件以及目前位置“src/caffe”中包含的我还没有提到的所有.cpp文件就是caffe的核心目录下的核心代码了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="源码主要关系">源码主要关系</h1><p>如上所言我们现在可以知道，caffe核心中的核心是下面的文档和文件:（这部分目前不清楚的地方先参照别人的观点）</p>
+<ul>
+<li>blob[.cpp .h] 基本的数据结构Blob类[3]。</li>
+<li>common[.cpp .h] 定义Caffe类</li>
+<li>internal_thread[.cpp .h] 使用boost::thread线程库</li>
+<li>net[.cpp .h] 网络结构类Net</li>
+<li>solver[.cpp .h] 优化方法类Solver</li>
+<li>data_transformer[.cpp .h] 输入数据的基本操作类DataTransformer</li>
+<li>syncedmem[.cpp .h] 分配内存和释放内存类CaffeMallocHost，用于同步GPU，CPU数据</li>
+<li>layer_factory.cpp layer.h 层类Layer</li>
+<li><code>layers</code> 此文件夹下面的代码全部至少继承了类Layer</li>
+</ul>
+<h1 id="Caffe的官方说明">Caffe的官方说明</h1><p>根据Caffe<a href="http://caffe.berkeleyvision.org/tutorial/net_layer_blob.html" target="_blank" rel="external">官方文档</a>介绍，caffe大致可以分为三层结构blob，layer，net。数据的保存，交换以及操作都是以blob的形式进行的，layer是模型和计算的基础，net整和并连接layer。solver则是模型的优化求解。</p>
+<p>[1]: <a href="http://blog.csdn.net/lingerlanlan/article/details/38121443" target="_blank" rel="external">linger: 我所写的CNN框架 VS caffe</a><br>[2]: <a href="http://www.ibm.com/developerworks/cn/linux/l-cn-gpb/" target="_blank" rel="external">Google Protocol Buffer 的使用和原理</a><br>[3]: <a href="http://www.shwley.com/index.php/archives/64/" target="_blank" rel="external">caffe源码简单解析——Blob（1） </a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/12/09/Caffe学习笔记1-安装以及代码结构/" data-id="cibkqcz4m0000tx37enrma97c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Caffe/">Caffe</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/09/Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Caffe学习笔记2-Caffe的三级结构(Blobs,Layers,Nets)
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/11/23/Note/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Note</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LearningCaffe/">LearningCaffe</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/">Caffe</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Caffe/" style="font-size: 20px;">Caffe</a> <a href="/tags/Torch/" style="font-size: 10px;">Torch</a> <a href="/tags/《Deep-Learning》/" style="font-size: 15px;">《Deep Learning》</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/02/26/近期DL重要论文整理长期更新/">近期DL重要论文整理长期更新</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/">《Deep Learning》(Bengio)读书笔记3-CNN</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/">《Deep Learning》(Bengio)读书笔记2-ML基本知识</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/">《Deep Learning》(Bengio)读书笔记1-DL简介</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/">Caffe学习笔记4-caffe安装需要注意的libraries</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 YuFeiGan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

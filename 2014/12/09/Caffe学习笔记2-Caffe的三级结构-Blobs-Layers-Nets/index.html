@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Caffe学习笔记2-Caffe的三级结构(Blobs,Layers,Nets) | GanYuFei (甘宇飞)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="根据Caffe官方文档介绍，caffe大致可以分为三层结构blob，layer，net。数据的保存，交换以及操作都是以blob的形式进行的，layer是模型和计算的基础，net整和并连接layer。
+BlobsBlob是Caffe的基本数据结构，具有CPU和GPU之间同步的能力,它是4维的数组(Num, Channels, Height, Width)。设Blob数据维度为 number N x">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Caffe学习笔记2-Caffe的三级结构(Blobs,Layers,Nets)">
+<meta property="og:url" content="http://yoursite.com/2014/12/09/Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets/index.html">
+<meta property="og:site_name" content="GanYuFei (甘宇飞)">
+<meta property="og:description" content="根据Caffe官方文档介绍，caffe大致可以分为三层结构blob，layer，net。数据的保存，交换以及操作都是以blob的形式进行的，layer是模型和计算的基础，net整和并连接layer。
+BlobsBlob是Caffe的基本数据结构，具有CPU和GPU之间同步的能力,它是4维的数组(Num, Channels, Height, Width)。设Blob数据维度为 number N x">
+<meta property="og:updated_time" content="2014-12-10T07:55:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Caffe学习笔记2-Caffe的三级结构(Blobs,Layers,Nets)">
+<meta name="twitter:description" content="根据Caffe官方文档介绍，caffe大致可以分为三层结构blob，layer，net。数据的保存，交换以及操作都是以blob的形式进行的，layer是模型和计算的基础，net整和并连接layer。
+BlobsBlob是Caffe的基本数据结构，具有CPU和GPU之间同步的能力,它是4维的数组(Num, Channels, Height, Width)。设Blob数据维度为 number N x">
+  
+    <link rel="alternative" href="/atom.xml" title="GanYuFei (甘宇飞)" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GanYuFei (甘宇飞)</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To improve is to change, to perfect is to change often.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/09/Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets/" class="article-date">
+  <time datetime="2014-12-09T11:53:35.000Z" itemprop="datePublished">2014-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LearningCaffe/">LearningCaffe</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Caffe学习笔记2-Caffe的三级结构(Blobs,Layers,Nets)
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>根据Caffe<a href="http://caffe.berkeleyvision.org/tutorial/net_layer_blob.html" target="_blank" rel="external">官方文档</a>介绍，caffe大致可以分为三层结构blob，layer，net。数据的保存，交换以及操作都是以blob的形式进行的，layer是模型和计算的基础，net整和并连接layer。</p>
+<h1 id="Blobs">Blobs</h1><p>Blob是Caffe的基本数据结构，具有CPU和GPU之间同步的能力,它是4维的数组(Num, Channels, Height, Width)。<br>设Blob数据维度为 number N x channel K x height H x width W，Blob是row-major保存的，因此在(n, k, h, w)位置的值物理位置为((n * K + k) * H + h) * W + w，其中Number/N是batch size。<br>Blob同时保存了<code>data</code>和<code>diff</code>(梯度)，访问<code>data</code>或<code>diff</code>有两种方法:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Dtype* cpu_data() <span class="keyword">const</span>; <span class="comment">//不修改值</span></span><br><span class="line">Dtype* mutable_cpu_data();     <span class="comment">//修改值</span></span><br></pre></td></tr></table></figure>
+<p>Blob会使用SyncedMem自动决定什么时候去copy data以提高运行效率，通常情况是仅当gnu或cpu修改后有copy操作，文档里面给了一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">￼<span class="comment">// Assuming that data are on the CPU initially, and we have a blob.</span></span><br><span class="line"><span class="keyword">const</span> Dtype* foo;</span><br><span class="line">Dtype* bar;</span><br><span class="line">foo = blob.gpu_data(); <span class="comment">// data copied cpu-&gt;gpu.</span></span><br><span class="line">foo = blob.cpu_data(); <span class="comment">// no data copied since both have up-to-date contents.</span></span><br><span class="line">bar = blob.mutable_gpu_data(); <span class="comment">// no data copied.</span></span><br><span class="line"><span class="comment">// ... some operations ...</span></span><br><span class="line">bar = blob.mutable_gpu_data(); <span class="comment">// no data copied when we are still on GPU.</span></span><br><span class="line">foo = blob.cpu_data(); <span class="comment">// data copied gpu-&gt;cpu, since the gpu side has modified the data</span></span><br><span class="line">foo = blob.gpu_data(); <span class="comment">// no data copied since both have up-to-date contents</span></span><br><span class="line">bar = blob.mutable_cpu_data(); <span class="comment">// still no data copied.</span></span><br><span class="line">bar = blob.mutable_gpu_data(); <span class="comment">// data copied cpu-&gt;gpu.</span></span><br><span class="line">bar = blob.mutable_cpu_data(); <span class="comment">// data copied gpu-&gt;cpu.</span></span><br></pre></td></tr></table></figure>
+<p><em>(顺便查了下一直有疑问<a href="http://baike.baidu.com/link?url=coXh-sAgljTqCl-srJQhwHVkq5i24izowBphWUtQUioR8YOVC_b3tf4-ojGZ5VCCbS9ShH4_XE2_31bw5Ne3KK" target="_blank" rel="external">foo</a>是什么意思。。)</em></p>
+<h1 id="Layer">Layer</h1><p>所有的Pooling，Convolve，apply nonlinearities等操作都在这里实现。在Layer中input data用<code>bottom</code>表示output data用<code>top</code>表示。每一层定义了三种操作<code>setup</code>（Layer初始化）, <code>forward</code>（正向传导，根据input计算output）, <code>backward</code>（反向传导计算，根据output计算input的梯度）。<code>forward</code>和<code>backward</code>有GPU和CPU两个版本的实现。</p>
+<h1 id="Net">Net</h1><p>Net由一系列的Layer组成(无回路有向图DAG)，Layer之间的连接由一个文本文件描述。模型初始化<code>Net::Init()</code>会产生blob和layer并调用<code>Layer::SetUp</code>。在此过程中<code>Net</code>会报告初始化进程。这里的初始化与设备无关，在初始化之后通过<code>Caffe::set_mode()</code>设置<code>Caffe::mode()</code>来选择运行平台CPU或GPU，结果是相同的。</p>
+<hr>
+<h1 id="模型的格式">模型的格式</h1><p>模型定义在<code>.prototxt</code>文件中，训练好的模型在<code>model</code>目录下<code>.binaryproto</code>格式的文件中。模型的格式由<code>caffe.proto</code>定义。采用Google Protocol Buffer可以节省空间还有它对C++和Pyhton的支持也很好。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/12/09/Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets/" data-id="cibkqcz5z000utx37jxzycfq8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Caffe/">Caffe</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/09/Caffe学习笔记3-Layer的相关学习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Caffe学习笔记3-Layer的相关学习
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/12/09/Caffe学习笔记1-安装以及代码结构/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Caffe学习笔记1-安装以及代码结构</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LearningCaffe/">LearningCaffe</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/">Caffe</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Caffe/" style="font-size: 20px;">Caffe</a> <a href="/tags/Torch/" style="font-size: 10px;">Torch</a> <a href="/tags/《Deep-Learning》/" style="font-size: 15px;">《Deep Learning》</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/02/26/近期DL重要论文整理长期更新/">近期DL重要论文整理长期更新</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/">《Deep Learning》(Bengio)读书笔记3-CNN</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/">《Deep Learning》(Bengio)读书笔记2-ML基本知识</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/">《Deep Learning》(Bengio)读书笔记1-DL简介</a>
+          </li>
+        
+          <li>
+            <a href="/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/">Caffe学习笔记4-caffe安装需要注意的libraries</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 YuFeiGan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>

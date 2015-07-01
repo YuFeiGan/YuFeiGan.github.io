@@ -101,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/02/26/近期DL重要论文整理长期更新/" data-id="cibkqceg30003tg37ia00g5ra" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/02/26/近期DL重要论文整理长期更新/" data-id="cibkqcz5i0005tx37udjk2g9a" class="article-share-link">Share</a>
       
       
     </footer>
@@ -174,7 +174,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/" data-id="cibkqceg50004tg37ct4unimz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/" data-id="cibkqcz5k0006tx37px2kuh6x" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a></li></ul>
@@ -232,7 +232,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/" data-id="cibkqceg80009tg379obtfusz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/" data-id="cibkqcz5m000btx37g094k3mk" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a></li></ul>
@@ -294,10 +294,320 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/" data-id="cibkqcega000ctg37j41srdr2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/" data-id="cibkqcz5o000etx37gw827682" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Caffe学习笔记4-caffe安装需要注意的libraries" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/" class="article-date">
+  <time datetime="2014-12-14T02:58:09.000Z" itemprop="datePublished">2014-12-14</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LearningCaffe/">LearningCaffe</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/">Caffe学习笔记4-caffe安装需要注意的libraries</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>当调用caffe训练数据的时候实际上调用的文件是在caffe.cpp中实现的<code>train()</code> 和 <code>test()</code>两个函数。搞清楚这两个函数对caffe的调用过程很有帮助。在这之前要提到几个相关的库，虽然与caffe实现关系不大，但完全不懂还是多少有点影响代码的理解。</p>
+<h1 id="Google_Code">Google Code</h1><h2 id="glog">glog</h2><p>google出的一个C++轻量级日志库，网络上的教程文档很多<a href="http://google-glog.googlecode.com/svn/trunk/doc/glog.html" target="_blank" rel="external">English docs</a>, <a href="http://www.cnblogs.com/tianyajuanke/archive/2013/02/22/2921850.html" target="_blank" rel="external">Chinese docs</a>, <a href="http://www.cppfans.org/1566.html" target="_blank" rel="external">glog使用与功能修改</a>。<br>看代码的时候充斥这类似<code>CHECK_EQ</code>、 <code>CHECK_NOTNULL</code>、<code>CHECK_STREQ</code>、<code>CHECK_DOUBLE_EQ</code>的函数这就是glog里面的函数，类似ASSERT()的断言。</p>
+<h2 id="gflags">gflags</h2><p>它是一个标记选项的库，看了这个<a href="http://download.csdn.net/detail/onlinesoon1/7713855" target="_blank" rel="external">GFLAGS使用手册</a>马上就能明白作用。另外的文档有<a href="http://blog.csdn.net/lezardfu/article/details/23753741" target="_blank" rel="external">Google gflags使用说明</a>。</p>
+<h2 id="gtest">gtest</h2><p>Google的开源C++单元测试框架，caffe里面test代码中大量用到，网上教程也是一大堆，中文里面最好的<a href="http://www.cnblogs.com/coderzh/archive/2009/04/06/1426755.html" target="_blank" rel="external">玩转Google开源C++单元测试框架Google Test系列(gtest)(总)</a>，英文文档<a href="https://code.google.com/p/googletest/wiki/Samples" target="_blank" rel="external">googletest</a></p>
+<h1 id="关于CPU加速">关于CPU加速</h1><p>Caffe推荐的BLAS（Basic Linear Algebra Subprograms）有三个选择ATLAS，Intel MKL，OpenBLAS。其中ATLAS是caffe是默认选择开源免费，如果没有安装CUDA的不太推荐使用，因为CPU多线程的支持不太好；Intel MKL是商业库要收费，我没有试过但caffe的作者安装的是这个库，估计效果应该是最好的；OpenBLAS开源免费，支持CPU多线程，我安装的就是这个。顺便贴上安装代码，其实很简单：</p>
+<h2 id="安装ATLAS">安装ATLAS</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libatlas-base-dev</span><br></pre></td></tr></table></figure>
+<h2 id="安装OpenBLAS">安装OpenBLAS</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libopenblas-base</span><br></pre></td></tr></table></figure>
+<p>参考链接：<br><a href="https://github.com/BVLC/caffe/issues/16" target="_blank" rel="external">Caffe issues #16: Remove Intel MKL dependency</a><br><a href="https://github.com/BVLC/caffe/issues/79" target="_blank" rel="external">Caffe issues #79: Support multithreading in the CPU mode of Solver::Solve</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/" data-id="cibkqcz5u000otx376k8xm4qw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Caffe/">Caffe</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Caffe学习笔记3-Layer的相关学习" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/09/Caffe学习笔记3-Layer的相关学习/" class="article-date">
+  <time datetime="2014-12-09T15:18:14.000Z" itemprop="datePublished">2014-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LearningCaffe/">LearningCaffe</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/09/Caffe学习笔记3-Layer的相关学习/">Caffe学习笔记3-Layer的相关学习</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Layer">Layer</h1><p>Layer是所有层的基类，在Layer的基础上衍生出来的有5种Layers：</p>
+<ul>
+<li>data_layer</li>
+<li>neuron_layer</li>
+<li>loss_layer</li>
+<li>common_layer</li>
+<li>vision_layer</li>
+</ul>
+<p>它们都有对应的[.hpp .cpp]文件声明和实现了各个类的接口。下面一个一个地讲这5个Layer。</p>
+<h2 id="data_layer">data_layer</h2><p>先看data_layer.hpp中头文件调用情况：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "boost/scoped_ptr.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "hdf5.h"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "leveldb/db.h"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "lmdb.h"</span></span><br><span class="line"><span class="comment">//前4个都是数据格式有关的文件</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/blob.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/common.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/data_transformer.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/filler.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/internal_thread.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/layer.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/proto/caffe.pb.h"</span></span><br></pre></td></tr></table></figure>
+<p>不难看出data_layer主要包含与数据有关的文件。在官方文档中指出data是caffe数据的入口是网络的最低层，并且支持多种格式，在这之中又有5种LayerType：</p>
+<ul>
+<li><code>DATA</code></li>
+<li><code>MEMORY_DATA</code></li>
+<li><code>HDF5_DATA</code></li>
+<li><code>HDF5_OUTPUT</code></li>
+<li>￼<code>￼￼￼￼IMAGE_DATA</code></li>
+</ul>
+<p>其实还有两种<code>￼￼WINDOW_DATA</code>, <code>DUMMY_DATA</code>用于测试和预留的接口，这里暂时不管。</p>
+<h3 id="DATA">DATA</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> BaseDataLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> BasePrefetchingDataLayer : <span class="keyword">public</span> BaseDataLayer&lt;Dtype&gt;, <span class="keyword">public</span> InternalThread</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> DataLayer : <span class="keyword">public</span> BasePrefetchingDataLayer&lt;Dtype&gt;</span><br></pre></td></tr></table></figure>
+<p>用于LevelDB或LMDB数据格式的输入的类型，输入参数有<code>source</code>, <code>batch_size</code>, (<code>rand_skip</code>), (<code>backend</code>)。后两个是可选。</p>
+<h3 id="MEMORY_DATA">MEMORY_DATA</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> MemoryDataLayer : <span class="keyword">public</span> BaseDataLayer&lt;Dtype&gt;</span><br></pre></td></tr></table></figure>
+<p>这种类型可以直接从内存读取数据使用时需要调用<code>MemoryDataLayer::Reset</code>，输入参数有<code>batch_size</code>, <code>channels</code>, <code>height</code>, <code>width</code>。</p>
+<h3 id="HDF5_DATA">HDF5_DATA</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> HDF5DataLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br></pre></td></tr></table></figure>
+<p>HDF5数据格式输入的类型，输入参数有<code>source</code>, <code>batch_size</code>。</p>
+<h3 id="HDF5_OUTPUT">HDF5_OUTPUT</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> HDF5OutputLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br></pre></td></tr></table></figure>
+<p>HDF5数据格式输出的类型，输入参数有<code>file_name</code>。</p>
+<h3 id="IMAGE_DATA">IMAGE_DATA</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> ImageDataLayer : <span class="keyword">public</span> BasePrefetchingDataLayer&lt;Dtype&gt;</span><br></pre></td></tr></table></figure>
+<p>图像格式数据输入的类型，输入参数有<code>source</code>, <code>batch_size</code>, (<code>rand_skip</code>), (<code>shuffle</code>), (<code>new_height</code>), (<code>new_width</code>)。</p>
+<h2 id="neuron_layer">neuron_layer</h2><p>先看neuron_layer.hpp中头文件调用情况</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/blob.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/common.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/layer.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/proto/caffe.pb.h"</span></span><br></pre></td></tr></table></figure>
+<p>同样是数据的操作层，neuron_layer实现里大量激活函数，主要是元素级别的操作，具有相同的<code>bottom</code>,<code>top</code>size。<br>Caffe中实现了大量激活函数GPU和CPU的都有很多。它们的父类都是<code>NeuronLayer</code></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> NeuronLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br></pre></td></tr></table></figure>
+<p>这部分目前没什么需要深究的地方值得注意的是一般的参数设置格式如下（以ReLU为例）：</p>
+<figure class="highlight less"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">￼<span class="tag">layers</span> &#123;</span><br><span class="line">  <span class="attribute">name</span>: <span class="string">"relu1"</span></span><br><span class="line">  ￼<span class="attribute">type</span>: RELU</span><br><span class="line">￼  <span class="attribute">bottom</span>: <span class="string">"conv1"</span></span><br><span class="line">￼  <span class="attribute">top</span>: <span class="string">"conv1"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="loss_layer">loss_layer</h2><p>Loss层计算网络误差，loss_layer.hpp头文件调用情况：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/blob.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/common.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/layer.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/neuron_layers.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/proto/caffe.pb.h"</span></span><br></pre></td></tr></table></figure>
+<p>可以看见调用了<code>neuron_layers.hpp</code>，估计是需要调用里面的函数计算Loss，一般来说Loss放在最后一层。caffe实现了大量loss function，它们的父类都是<code>LossLayer</code>。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> LossLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br></pre></td></tr></table></figure>
+<h2 id="common_layer">common_layer</h2><p>先看common_layer.hpp头文件调用：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/blob.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/common.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/data_layers.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/layer.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/loss_layers.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/neuron_layers.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/proto/caffe.pb.h"</span></span><br></pre></td></tr></table></figure>
+<p>用到了前面提到的<code>data_layers.hpp</code>, <code>loss_layers.hpp</code>, <code>neuron_layers.hpp</code>说明这一层肯定开始有复杂的操作了。<br>这一层主要进行的是<code>vision_layer</code>的连接<br>声明了9个类型的common_layer，部分有GPU实现：</p>
+<ul>
+<li><code>InnerProductLayer</code></li>
+<li><code>SplitLayer</code></li>
+<li><code>FlattenLayer</code></li>
+<li><code>ConcatLayer</code></li>
+<li><code>SilenceLayer</code></li>
+<li>(Elementwise Operations) 这里面是我们常说的激活函数层Activation Layers。<ul>
+<li><code>EltwiseLayer</code></li>
+<li><code>SoftmaxLayer</code></li>
+<li><code>ArgMaxLayer</code></li>
+<li><code>MVNLayer</code></li>
+</ul>
+</li>
+</ul>
+<h3 id="InnerProductLayer">InnerProductLayer</h3><p>常常用来作为全连接层，设置格式为：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">￼layers &#123;</span><br><span class="line">  name: <span class="string">"fc8"</span></span><br><span class="line">  ￼￼<span class="built_in">type</span>: INNER_PRODUCT</span><br><span class="line">￼  blobs_lr: <span class="number">1</span>          <span class="comment"># learning rate multiplier for the filters</span></span><br><span class="line">￼  blobs_lr: <span class="number">2</span>          <span class="comment"># learning rate multiplier for the biases</span></span><br><span class="line">￼  weight_decay: <span class="number">1</span>      <span class="comment"># weight decay mu</span></span><br><span class="line">  weight_decay: <span class="number">0</span>      <span class="comment"># weight decay multiplier for the biases</span></span><br><span class="line">  inner_product_param &#123;</span><br><span class="line">    ￼num_output: <span class="number">1000</span></span><br><span class="line">￼    weight_filler &#123;</span><br><span class="line">￼      <span class="built_in">type</span>: <span class="string">"gaussian"</span></span><br><span class="line">￼      std: <span class="number">0.01</span></span><br><span class="line">￼    &#125;</span><br><span class="line">￼    bias_filler &#123;</span><br><span class="line">￼      <span class="built_in">type</span>: <span class="string">"constant"</span></span><br><span class="line">￼      value: <span class="number">0</span></span><br><span class="line">￼    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  ￼bottom: <span class="string">"fc7"</span></span><br><span class="line">￼  top: <span class="string">"fc8</span><br><span class="line">&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="SplitLayer">SplitLayer</h3><p>用于一输入对多输出的场合（对blob）</p>
+<h3 id="FlattenLayer">FlattenLayer</h3><p>将n * c * h * w变成向量的格式n * ( c * h * w ) * 1 * 1</p>
+<h3 id="ConcatLayer">ConcatLayer</h3><p>用于多输入一输出的场合。</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">￼layers &#123;</span><br><span class="line">  ￼<span class="string">name:</span> <span class="string">"concat"</span></span><br><span class="line">  ￼<span class="string">bottom:</span> <span class="string">"in1"</span></span><br><span class="line">  ￼<span class="string">bottom:</span> <span class="string">"in2"</span></span><br><span class="line">  ￼<span class="string">top:</span> <span class="string">"out"</span></span><br><span class="line">  ￼<span class="string">type:</span> CONCAT</span><br><span class="line">  ￼concat_param &#123;</span><br><span class="line">  ￼  <span class="string">concat_dim:</span> <span class="number">1</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="SilenceLayer">SilenceLayer</h3><p>用于一输入对多输出的场合（对layer）</p>
+<h3 id="(Elementwise_Operations)">(Elementwise Operations)</h3><p><code>EltwiseLayer</code>, <code>SoftmaxLayer</code>, <code>ArgMaxLayer</code>, <code>MVNLayer</code></p>
+<h2 id="vision_layer">vision_layer</h2><p>头文件包含前面所有文件，也就是说包含了最复杂的操作。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/blob.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/common.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/common_layers.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/data_layers.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/layer.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/loss_layers.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/neuron_layers.hpp"</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">include</span> "caffe/proto/caffe.pb.h"</span></span><br></pre></td></tr></table></figure>
+<p>它主要是实现Convolution和Pooling操作。主要有以下几个类。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> ConvolutionLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> Im2colLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> LRNLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Dtype&gt;</span><br><span class="line"><span class="keyword">class</span> PoolingLayer : <span class="keyword">public</span> Layer&lt;Dtype&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="ConvolutionLayer">ConvolutionLayer</h3><p>最常用的卷积操作，设置格式如下</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">￼layers &#123;</span><br><span class="line">  name: <span class="string">"conv1"</span></span><br><span class="line">￼  <span class="built_in">type</span>: CONVOLUTION</span><br><span class="line">￼  bottom: <span class="string">"data"</span></span><br><span class="line">￼  top: <span class="string">"conv1"</span></span><br><span class="line">￼  blobs_lr: <span class="number">1</span>          <span class="comment"># learning rate multiplier for the filters</span></span><br><span class="line">￼  blobs_lr: <span class="number">2</span>          <span class="comment"># learning rate multiplier for the biases</span></span><br><span class="line">￼  weight_decay: <span class="number">1</span>      <span class="comment"># weight decay multiplier for the filters</span></span><br><span class="line">￼￼  weight_decay: <span class="number">0</span>      <span class="comment"># weight decay multiplier for the biases</span></span><br><span class="line">  convolution_param &#123;</span><br><span class="line">￼    num_output: <span class="number">96</span>     <span class="comment"># learn 96 filters</span></span><br><span class="line">￼    kernel_size: <span class="number">11</span>    <span class="comment"># each filter is 11x11</span></span><br><span class="line">￼    stride: <span class="number">4</span>          <span class="comment"># step 4 pixels between each filter application</span></span><br><span class="line">    ￼weight_filler &#123;</span><br><span class="line">￼￼￼      <span class="built_in">type</span>: <span class="string">"gaussian"</span> <span class="comment"># initialize the filters from a Gaussian</span></span><br><span class="line">      std: <span class="number">0.01</span>        <span class="comment"># distribution with stdev 0.01 (default mean: 0)</span></span><br><span class="line">    &#125;</span><br><span class="line">￼    bias_filler &#123;</span><br><span class="line">￼￼      <span class="built_in">type</span>: <span class="string">"constant"</span> <span class="comment"># initialize the biases to zero (0)</span></span><br><span class="line">￼      value: <span class="number">0</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">￼&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Im2colLayer">Im2colLayer</h3><p>与MATLAB里面的im2col类似，即image-to-column transformation，转换后方便卷积计算</p>
+<h3 id="LRNLayer">LRNLayer</h3><p>全称local response normalization layer，在Hinton论文中有详细介绍<a href="http://www.cs.toronto.edu/~fritz/absps/imagenet.pdf" target="_blank" rel="external">ImageNet Classification with Deep Convolutional Neural Networks
+</a>。</p>
+<h3 id="PoolingLayer">PoolingLayer</h3><p>即Pooling操作，格式：</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">layers &#123;</span><br><span class="line">  <span class="property">name</span>: <span class="string">"pool1"</span></span><br><span class="line">  type: POOLING</span><br><span class="line">  bottom: <span class="string">"conv1"</span></span><br><span class="line">  top: <span class="string">"pool1"</span></span><br><span class="line">  pooling_param &#123;</span><br><span class="line">    pool: MAX</span><br><span class="line">    kernel_size: <span class="number">3</span> <span class="comment"># pool over a 3x3 region</span></span><br><span class="line">    stride: <span class="number">2</span>      <span class="comment"># step two pixels (in the bottom blob) between pooling regions</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/12/09/Caffe学习笔记3-Layer的相关学习/" data-id="cibkqcz5x000rtx376p491vl8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Caffe/">Caffe</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/09/Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets/" class="article-date">
+  <time datetime="2014-12-09T11:53:35.000Z" itemprop="datePublished">2014-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LearningCaffe/">LearningCaffe</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/09/Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets/">Caffe学习笔记2-Caffe的三级结构(Blobs,Layers,Nets)</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>根据Caffe<a href="http://caffe.berkeleyvision.org/tutorial/net_layer_blob.html" target="_blank" rel="external">官方文档</a>介绍，caffe大致可以分为三层结构blob，layer，net。数据的保存，交换以及操作都是以blob的形式进行的，layer是模型和计算的基础，net整和并连接layer。</p>
+<h1 id="Blobs">Blobs</h1><p>Blob是Caffe的基本数据结构，具有CPU和GPU之间同步的能力,它是4维的数组(Num, Channels, Height, Width)。<br>设Blob数据维度为 number N x channel K x height H x width W，Blob是row-major保存的，因此在(n, k, h, w)位置的值物理位置为((n * K + k) * H + h) * W + w，其中Number/N是batch size。<br>Blob同时保存了<code>data</code>和<code>diff</code>(梯度)，访问<code>data</code>或<code>diff</code>有两种方法:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> Dtype* cpu_data() <span class="keyword">const</span>; <span class="comment">//不修改值</span></span><br><span class="line">Dtype* mutable_cpu_data();     <span class="comment">//修改值</span></span><br></pre></td></tr></table></figure>
+<p>Blob会使用SyncedMem自动决定什么时候去copy data以提高运行效率，通常情况是仅当gnu或cpu修改后有copy操作，文档里面给了一个例子：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">￼<span class="comment">// Assuming that data are on the CPU initially, and we have a blob.</span></span><br><span class="line"><span class="keyword">const</span> Dtype* foo;</span><br><span class="line">Dtype* bar;</span><br><span class="line">foo = blob.gpu_data(); <span class="comment">// data copied cpu-&gt;gpu.</span></span><br><span class="line">foo = blob.cpu_data(); <span class="comment">// no data copied since both have up-to-date contents.</span></span><br><span class="line">bar = blob.mutable_gpu_data(); <span class="comment">// no data copied.</span></span><br><span class="line"><span class="comment">// ... some operations ...</span></span><br><span class="line">bar = blob.mutable_gpu_data(); <span class="comment">// no data copied when we are still on GPU.</span></span><br><span class="line">foo = blob.cpu_data(); <span class="comment">// data copied gpu-&gt;cpu, since the gpu side has modified the data</span></span><br><span class="line">foo = blob.gpu_data(); <span class="comment">// no data copied since both have up-to-date contents</span></span><br><span class="line">bar = blob.mutable_cpu_data(); <span class="comment">// still no data copied.</span></span><br><span class="line">bar = blob.mutable_gpu_data(); <span class="comment">// data copied cpu-&gt;gpu.</span></span><br><span class="line">bar = blob.mutable_cpu_data(); <span class="comment">// data copied gpu-&gt;cpu.</span></span><br></pre></td></tr></table></figure>
+<p><em>(顺便查了下一直有疑问<a href="http://baike.baidu.com/link?url=coXh-sAgljTqCl-srJQhwHVkq5i24izowBphWUtQUioR8YOVC_b3tf4-ojGZ5VCCbS9ShH4_XE2_31bw5Ne3KK" target="_blank" rel="external">foo</a>是什么意思。。)</em></p>
+<h1 id="Layer">Layer</h1><p>所有的Pooling，Convolve，apply nonlinearities等操作都在这里实现。在Layer中input data用<code>bottom</code>表示output data用<code>top</code>表示。每一层定义了三种操作<code>setup</code>（Layer初始化）, <code>forward</code>（正向传导，根据input计算output）, <code>backward</code>（反向传导计算，根据output计算input的梯度）。<code>forward</code>和<code>backward</code>有GPU和CPU两个版本的实现。</p>
+<h1 id="Net">Net</h1><p>Net由一系列的Layer组成(无回路有向图DAG)，Layer之间的连接由一个文本文件描述。模型初始化<code>Net::Init()</code>会产生blob和layer并调用<code>Layer::SetUp</code>。在此过程中<code>Net</code>会报告初始化进程。这里的初始化与设备无关，在初始化之后通过<code>Caffe::set_mode()</code>设置<code>Caffe::mode()</code>来选择运行平台CPU或GPU，结果是相同的。</p>
+<hr>
+<h1 id="模型的格式">模型的格式</h1><p>模型定义在<code>.prototxt</code>文件中，训练好的模型在<code>model</code>目录下<code>.binaryproto</code>格式的文件中。模型的格式由<code>caffe.proto</code>定义。采用Google Protocol Buffer可以节省空间还有它对C++和Pyhton的支持也很好。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/12/09/Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets/" data-id="cibkqcz5z000utx37jxzycfq8" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Caffe/">Caffe</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Caffe学习笔记1-安装以及代码结构" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/12/09/Caffe学习笔记1-安装以及代码结构/" class="article-date">
+  <time datetime="2014-12-09T11:51:36.000Z" itemprop="datePublished">2014-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/LearningCaffe/">LearningCaffe</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/12/09/Caffe学习笔记1-安装以及代码结构/">Caffe学习笔记1-安装以及代码结构</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="安装">安装</h1><p>按照<a href="http://caffe.berkeleyvision.org/installation.html" target="_blank" rel="external">官网教程</a>安装，我在 OS X 10.9 和 Ubuntu 14.04 上面都安装成功了。主要麻烦在于 glog gflags gtest 这几个依赖项是google上面的需要翻墙。由于我用Mac没有CUDA，所以安装时需要设置 CPU_ONLY := 1。</p>
+<p><em>如果不是干净的系统，安装还是有点麻烦的比如我在OS X 10.9上面，简直不是一般的麻烦，OS X 10.9 默认的编译器是clang，所以还要修改编译器和重行编译一大堆依赖库。这方面其实网上教程很多，涵盖了各种你可能遇到的问题，多Google下问题还是可以解决的。</em></p>
+<h1 id="目录结构">目录结构</h1><p>caffe文件夹下主要文件： <code>这表示文件夹</code></p>
+<ul>
+<li><code>data</code> 用于存放下载的训练数据</li>
+<li><code>docs</code> 帮助文档</li>
+<li><code>example</code> 一些代码样例</li>
+<li><code>matlab</code> MATLAB接口文件</li>
+<li><code>python</code> Python接口文件</li>
+<li><code>model</code> 一些配置好的模型参数</li>
+<li><code>scripts</code> 一些文档和数据用到的脚本</li>
+</ul>
+<p>下面是核心代码文件夹：</p>
+<ul>
+<li><code>tools</code> 保存的源码是用于生成二进制处理程序的，caffe在训练时实际是直接调用这些二进制文件。</li>
+<li><code>include</code> Caffe的实现代码的头文件</li>
+<li><code>src</code> 实现Caffe的源文件</li>
+</ul>
+<p><strong>后面的学习主要围绕后面两个文件目录（<code>include</code>和<code>src</code>）下的代码展开</strong></p>
+<h1 id="源码结构">源码结构</h1><p>由于<code>include</code>和<code>src</code>两个目录在层次上基本一一对应因此主要分析<code>src</code>即可了解文件结构。</p>
+<p><em>这里顺便提到一个有意思的东西，我是在Sublime上面利用SublimeClang插件分析代码的（顺便推荐下这插件，值得花点时间装）。在配置的时候发现会有错误提示找不到”caffe/proto/caffe.pb.h”，去看了下果然没有，但编译的时候没有报错，说明是生成过后又删除了，查看Makefile文件后发现这里用了proto编译的，所以在”src/caffe/proto”下面用CMakeLists文件就可以编译出来了。</em></p>
+<ul>
+<li><code>src</code><ul>
+<li><code>gtest</code> google test一个用于测试的库你make runtest时看见的很多绿色RUN OK就是它，这个与caffe的学习无关，不过是个有用的库</li>
+<li><code>caffe</code> 关键的代码都在这里了<ul>
+<li><code>test</code> 用gtest测试caffe的代码</li>
+<li><code>util</code> 数据转换时用的一些代码。caffe速度快，很大程度得益于内存设计上的优化（blob数据结构采用proto）和对卷积的优化（部分与im2col相关）[1]。</li>
+<li><code>proto</code> 即所谓的“Protobuf”[2]，全称“Google Protocol Buffer”，是一种数据存储格式，帮助caffe提速。</li>
+<li><code>layers</code> 深度神经网络中的基本结构就是一层层互不相同的网络了，这个文件夹下的源文件以及目前位置“src/caffe”中包含的我还没有提到的所有.cpp文件就是caffe的核心目录下的核心代码了。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="源码主要关系">源码主要关系</h1><p>如上所言我们现在可以知道，caffe核心中的核心是下面的文档和文件:（这部分目前不清楚的地方先参照别人的观点）</p>
+<ul>
+<li>blob[.cpp .h] 基本的数据结构Blob类[3]。</li>
+<li>common[.cpp .h] 定义Caffe类</li>
+<li>internal_thread[.cpp .h] 使用boost::thread线程库</li>
+<li>net[.cpp .h] 网络结构类Net</li>
+<li>solver[.cpp .h] 优化方法类Solver</li>
+<li>data_transformer[.cpp .h] 输入数据的基本操作类DataTransformer</li>
+<li>syncedmem[.cpp .h] 分配内存和释放内存类CaffeMallocHost，用于同步GPU，CPU数据</li>
+<li>layer_factory.cpp layer.h 层类Layer</li>
+<li><code>layers</code> 此文件夹下面的代码全部至少继承了类Layer</li>
+</ul>
+<h1 id="Caffe的官方说明">Caffe的官方说明</h1><p>根据Caffe<a href="http://caffe.berkeleyvision.org/tutorial/net_layer_blob.html" target="_blank" rel="external">官方文档</a>介绍，caffe大致可以分为三层结构blob，layer，net。数据的保存，交换以及操作都是以blob的形式进行的，layer是模型和计算的基础，net整和并连接layer。solver则是模型的优化求解。</p>
+<p>[1]: <a href="http://blog.csdn.net/lingerlanlan/article/details/38121443" target="_blank" rel="external">linger: 我所写的CNN框架 VS caffe</a><br>[2]: <a href="http://www.ibm.com/developerworks/cn/linux/l-cn-gpb/" target="_blank" rel="external">Google Protocol Buffer 的使用和原理</a><br>[3]: <a href="http://www.shwley.com/index.php/archives/64/" target="_blank" rel="external">caffe源码简单解析——Blob（1） </a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/12/09/Caffe学习笔记1-安装以及代码结构/" data-id="cibkqcz4m0000tx37enrma97c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Caffe/">Caffe</a></li></ul>
 
     </footer>
   </div>
@@ -354,7 +664,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/23/Note/" data-id="cibkqcef60000tg37mumt6rpr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/23/Note/" data-id="cibkqcz5s000mtx37oiiic4r2" class="article-share-link">Share</a>
       
       
     </footer>
@@ -395,7 +705,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/23/Torch7-A-Matlab-like-Environment-for-Machine-Learning/" data-id="cibkqcegc000ftg37xdx0afea" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/23/Torch7-A-Matlab-like-Environment-for-Machine-Learning/" data-id="cibkqcz5q000htx37pqyfnzhv" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Torch/">Torch</a></li></ul>
@@ -416,7 +726,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LearningCaffe/">LearningCaffe</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -425,7 +735,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a><span class="tag-list-count">3</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/">Caffe</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -434,7 +744,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Torch/" style="font-size: 10px;">Torch</a> <a href="/tags/《Deep-Learning》/" style="font-size: 20px;">《Deep Learning》</a>
+      <a href="/tags/Caffe/" style="font-size: 20px;">Caffe</a> <a href="/tags/Torch/" style="font-size: 10px;">Torch</a> <a href="/tags/《Deep-Learning》/" style="font-size: 15px;">《Deep Learning》</a>
     </div>
   </div>
 
@@ -443,7 +753,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -471,7 +781,7 @@
           </li>
         
           <li>
-            <a href="/2014/11/23/Note/">Note</a>
+            <a href="/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/">Caffe学习笔记4-caffe安装需要注意的libraries</a>
           </li>
         
       </ul>

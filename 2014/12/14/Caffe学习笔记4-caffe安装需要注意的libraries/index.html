@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Torch7 A Matlab-like Environment for Machine Learning | GanYuFei (甘宇飞)</title>
+  <title>Caffe学习笔记4-caffe安装需要注意的libraries | GanYuFei (甘宇飞)</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Torch7: A Matlab-like Environment for Machine LearningWhy not Python? It is hard to talk about a language without starting a flame war. While Lua is well known in the gaming programmer community (beca">
+  <meta name="description" content="当调用caffe训练数据的时候实际上调用的文件是在caffe.cpp中实现的train() 和 test()两个函数。搞清楚这两个函数对caffe的调用过程很有帮助。在这之前要提到几个相关的库，虽然与caffe实现关系不大，但完全不懂还是多少有点影响代码的理解。
+Google Codegloggoogle出的一个C++轻量级日志库，网络上的教程文档很多English docs, Chinese d">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Torch7 A Matlab-like Environment for Machine Learning">
-<meta property="og:url" content="http://yoursite.com/2014/11/23/Torch7-A-Matlab-like-Environment-for-Machine-Learning/index.html">
+<meta property="og:title" content="Caffe学习笔记4-caffe安装需要注意的libraries">
+<meta property="og:url" content="http://yoursite.com/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/index.html">
 <meta property="og:site_name" content="GanYuFei (甘宇飞)">
-<meta property="og:description" content="Torch7: A Matlab-like Environment for Machine LearningWhy not Python? It is hard to talk about a language without starting a flame war. While Lua is well known in the gaming programmer community (beca">
-<meta property="og:updated_time" content="2014-11-27T03:56:42.000Z">
+<meta property="og:description" content="当调用caffe训练数据的时候实际上调用的文件是在caffe.cpp中实现的train() 和 test()两个函数。搞清楚这两个函数对caffe的调用过程很有帮助。在这之前要提到几个相关的库，虽然与caffe实现关系不大，但完全不懂还是多少有点影响代码的理解。
+Google Codegloggoogle出的一个C++轻量级日志库，网络上的教程文档很多English docs, Chinese d">
+<meta property="og:updated_time" content="2014-12-14T03:10:43.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Torch7 A Matlab-like Environment for Machine Learning">
-<meta name="twitter:description" content="Torch7: A Matlab-like Environment for Machine LearningWhy not Python? It is hard to talk about a language without starting a flame war. While Lua is well known in the gaming programmer community (beca">
+<meta name="twitter:title" content="Caffe学习笔记4-caffe安装需要注意的libraries">
+<meta name="twitter:description" content="当调用caffe训练数据的时候实际上调用的文件是在caffe.cpp中实现的train() 和 test()两个函数。搞清楚这两个函数对caffe的调用过程很有帮助。在这之前要提到几个相关的库，虽然与caffe实现关系不大，但完全不懂还是多少有点影响代码的理解。
+Google Codegloggoogle出的一个C++轻量级日志库，网络上的教程文档很多English docs, Chinese d">
   
     <link rel="alternative" href="/atom.xml" title="GanYuFei (甘宇飞)" type="application/atom+xml">
   
@@ -64,14 +67,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-Torch7-A-Matlab-like-Environment-for-Machine-Learning" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Caffe学习笔记4-caffe安装需要注意的libraries" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/11/23/Torch7-A-Matlab-like-Environment-for-Machine-Learning/" class="article-date">
-  <time datetime="2014-11-23T06:26:16.000Z" itemprop="datePublished">2014-11-23</time>
+    <a href="/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/" class="article-date">
+  <time datetime="2014-12-14T02:58:09.000Z" itemprop="datePublished">2014-12-14</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Note/">Note</a>
+    <a class="article-category-link" href="/categories/LearningCaffe/">LearningCaffe</a>
   </div>
 
   </div>
@@ -82,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      Torch7 A Matlab-like Environment for Machine Learning
+      Caffe学习笔记4-caffe安装需要注意的libraries
     </h1>
   
 
@@ -90,15 +93,22 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="Torch7:_A_Matlab-like_Environment_for_Machine_Learning">Torch7: A Matlab-like Environment for Machine Learning</h3><p>Why not Python? It is hard to talk about a language without starting a flame war. While Lua is well known in the gaming programmer community (because of its speed advantage and great em- bedding capabilities), Python is more popular in a more general public. With no doubt, Python ships with more libraries. However, with no doubt5, “Integrating Lua with C is so easy a child could do it. Lua was designed for this also, from the beginning, and it shows6. This means that with a few hours’ work, any C or C++ library can become a Lua library.”. Another key advantage of Lua is its embedding capabilities: once code has been prototyped, it can be turned into a final system/product with very little extra work. Extra performance can be obtained using LuaJIT, yielding C-like performance for most of the pure Lua code. Lua being written in pure ANSI C, it can be easily compiled for arbitrary targets (cell-phones, embedded CPUs in FPGAs, DSP processors, …). Adding Lua’ speed advantage, the choice was a “no brainer”.</p>
+        <p>当调用caffe训练数据的时候实际上调用的文件是在caffe.cpp中实现的<code>train()</code> 和 <code>test()</code>两个函数。搞清楚这两个函数对caffe的调用过程很有帮助。在这之前要提到几个相关的库，虽然与caffe实现关系不大，但完全不懂还是多少有点影响代码的理解。</p>
+<h1 id="Google_Code">Google Code</h1><h2 id="glog">glog</h2><p>google出的一个C++轻量级日志库，网络上的教程文档很多<a href="http://google-glog.googlecode.com/svn/trunk/doc/glog.html" target="_blank" rel="external">English docs</a>, <a href="http://www.cnblogs.com/tianyajuanke/archive/2013/02/22/2921850.html" target="_blank" rel="external">Chinese docs</a>, <a href="http://www.cppfans.org/1566.html" target="_blank" rel="external">glog使用与功能修改</a>。<br>看代码的时候充斥这类似<code>CHECK_EQ</code>、 <code>CHECK_NOTNULL</code>、<code>CHECK_STREQ</code>、<code>CHECK_DOUBLE_EQ</code>的函数这就是glog里面的函数，类似ASSERT()的断言。</p>
+<h2 id="gflags">gflags</h2><p>它是一个标记选项的库，看了这个<a href="http://download.csdn.net/detail/onlinesoon1/7713855" target="_blank" rel="external">GFLAGS使用手册</a>马上就能明白作用。另外的文档有<a href="http://blog.csdn.net/lezardfu/article/details/23753741" target="_blank" rel="external">Google gflags使用说明</a>。</p>
+<h2 id="gtest">gtest</h2><p>Google的开源C++单元测试框架，caffe里面test代码中大量用到，网上教程也是一大堆，中文里面最好的<a href="http://www.cnblogs.com/coderzh/archive/2009/04/06/1426755.html" target="_blank" rel="external">玩转Google开源C++单元测试框架Google Test系列(gtest)(总)</a>，英文文档<a href="https://code.google.com/p/googletest/wiki/Samples" target="_blank" rel="external">googletest</a></p>
+<h1 id="关于CPU加速">关于CPU加速</h1><p>Caffe推荐的BLAS（Basic Linear Algebra Subprograms）有三个选择ATLAS，Intel MKL，OpenBLAS。其中ATLAS是caffe是默认选择开源免费，如果没有安装CUDA的不太推荐使用，因为CPU多线程的支持不太好；Intel MKL是商业库要收费，我没有试过但caffe的作者安装的是这个库，估计效果应该是最好的；OpenBLAS开源免费，支持CPU多线程，我安装的就是这个。顺便贴上安装代码，其实很简单：</p>
+<h2 id="安装ATLAS">安装ATLAS</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libatlas-base-dev</span><br></pre></td></tr></table></figure>
+<h2 id="安装OpenBLAS">安装OpenBLAS</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libopenblas-base</span><br></pre></td></tr></table></figure>
+<p>参考链接：<br><a href="https://github.com/BVLC/caffe/issues/16" target="_blank" rel="external">Caffe issues #16: Remove Intel MKL dependency</a><br><a href="https://github.com/BVLC/caffe/issues/79" target="_blank" rel="external">Caffe issues #79: Support multithreading in the CPU mode of Solver::Solve</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/23/Torch7-A-Matlab-like-Environment-for-Machine-Learning/" data-id="cibkqcz5q000htx37pqyfnzhv" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/12/14/Caffe学习笔记4-caffe安装需要注意的libraries/" data-id="cibkqcz5u000otx376k8xm4qw" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Torch/">Torch</a></li></ul>
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Caffe/">Caffe</a></li></ul>
 
     </footer>
   </div>
@@ -106,15 +116,20 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/11/23/Note/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Note
+          《Deep Learning》(Bengio)读书笔记1-DL简介
         
       </div>
     </a>
   
+  
+    <a href="/2014/12/09/Caffe学习笔记3-Layer的相关学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Caffe学习笔记3-Layer的相关学习</div>
+    </a>
   
 </nav>
 
