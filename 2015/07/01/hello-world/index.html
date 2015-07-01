@@ -7,13 +7,12 @@
   <meta name="360-site-verification" content="67fbcc5a67f4c65c057315b28fa0b2c8" />
 <meta name="google-site-verification" content="2GzxQ0VtXwTSUdmGm6DzcmhTzM_I9QmzCb_pzpMzD88" />
   
-    <title>Caffe学习笔记1-安装以及代码结构 | GanYuFei (甘宇飞)</title>
+    <title>Hello World | GanYuFei (甘宇飞)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=1">
     
     <meta name="author" content="YuFeiGan">
     
-    <meta name="description" content="安装按照官网教程安装，我在 OS X 10.9 和 Ubuntu 14.04 上面都安装成功了。主要麻烦在于 glog gflags gtest 这几个依赖项是google上面的需要翻墙。由于我用Mac没有CUDA，所以安装时需要设置 CPU_ONLY := 1。
-如果不是干净的系统，安装还是有点麻">
+    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in ">
     
     
     
@@ -105,15 +104,15 @@
 		<header class="article-info clearfix">
   <h1 itemprop="name">
     
-      <a href="/2014/12/09/Caffe学习笔记1-安装以及代码结构/" title="Caffe学习笔记1-安装以及代码结构" itemprop="url">Caffe学习笔记1-安装以及代码结构</a>
+      <a href="/2015/07/01/hello-world/" title="Hello World" itemprop="url">Hello World</a>
   </h1>
   <p class="article-author">By
     
       <a href="http://yoursite.com" title="YuFeiGan">YuFeiGan</a>
     </p>
   <p class="article-time">
-    <time datetime="2014-12-09T11:51:36.000Z" itemprop="datePublished">2014-12-09</time>
-    更新日期:<time datetime="2014-12-09T12:21:56.000Z" itemprop="dateModified">2014-12-09</time>
+    <time datetime="2015-07-01T12:36:32.000Z" itemprop="datePublished">2015-07-01</time>
+    更新日期:<time datetime="2015-07-01T12:05:39.000Z" itemprop="dateModified">2015-07-01</time>
     
   </p>
 </header>
@@ -122,77 +121,28 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#目录结构"><span class="toc-number">2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#源码结构"><span class="toc-number">3.</span> <span class="toc-text">源码结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#源码主要关系"><span class="toc-number">4.</span> <span class="toc-text">源码主要关系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Caffe的官方说明"><span class="toc-number">5.</span> <span class="toc-text">Caffe的官方说明</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
 		</div>
 		
-		<h1 id="安装">安装</h1><p>按照<a href="http://caffe.berkeleyvision.org/installation.html" target="_blank" rel="external">官网教程</a>安装，我在 OS X 10.9 和 Ubuntu 14.04 上面都安装成功了。主要麻烦在于 glog gflags gtest 这几个依赖项是google上面的需要翻墙。由于我用Mac没有CUDA，所以安装时需要设置 CPU_ONLY := 1。</p>
-<p><em>如果不是干净的系统，安装还是有点麻烦的比如我在OS X 10.9上面，简直不是一般的麻烦，OS X 10.9 默认的编译器是clang，所以还要修改编译器和重行编译一大堆依赖库。这方面其实网上教程很多，涵盖了各种你可能遇到的问题，多Google下问题还是可以解决的。</em></p>
-<h1 id="目录结构">目录结构</h1><p>caffe文件夹下主要文件： <code>这表示文件夹</code></p>
-<ul>
-<li><code>data</code> 用于存放下载的训练数据</li>
-<li><code>docs</code> 帮助文档</li>
-<li><code>example</code> 一些代码样例</li>
-<li><code>matlab</code> MATLAB接口文件</li>
-<li><code>python</code> Python接口文件</li>
-<li><code>model</code> 一些配置好的模型参数</li>
-<li><code>scripts</code> 一些文档和数据用到的脚本</li>
-</ul>
-<p>下面是核心代码文件夹：</p>
-<ul>
-<li><code>tools</code> 保存的源码是用于生成二进制处理程序的，caffe在训练时实际是直接调用这些二进制文件。</li>
-<li><code>include</code> Caffe的实现代码的头文件</li>
-<li><code>src</code> 实现Caffe的源文件</li>
-</ul>
-<p><strong>后面的学习主要围绕后面两个文件目录（<code>include</code>和<code>src</code>）下的代码展开</strong></p>
-<h1 id="源码结构">源码结构</h1><p>由于<code>include</code>和<code>src</code>两个目录在层次上基本一一对应因此主要分析<code>src</code>即可了解文件结构。</p>
-<p><em>这里顺便提到一个有意思的东西，我是在Sublime上面利用SublimeClang插件分析代码的（顺便推荐下这插件，值得花点时间装）。在配置的时候发现会有错误提示找不到”caffe/proto/caffe.pb.h”，去看了下果然没有，但编译的时候没有报错，说明是生成过后又删除了，查看Makefile文件后发现这里用了proto编译的，所以在”src/caffe/proto”下面用CMakeLists文件就可以编译出来了。</em></p>
-<ul>
-<li><code>src</code><ul>
-<li><code>gtest</code> google test一个用于测试的库你make runtest时看见的很多绿色RUN OK就是它，这个与caffe的学习无关，不过是个有用的库</li>
-<li><code>caffe</code> 关键的代码都在这里了<ul>
-<li><code>test</code> 用gtest测试caffe的代码</li>
-<li><code>util</code> 数据转换时用的一些代码。caffe速度快，很大程度得益于内存设计上的优化（blob数据结构采用proto）和对卷积的优化（部分与im2col相关）[1]。</li>
-<li><code>proto</code> 即所谓的“Protobuf”[2]，全称“Google Protocol Buffer”，是一种数据存储格式，帮助caffe提速。</li>
-<li><code>layers</code> 深度神经网络中的基本结构就是一层层互不相同的网络了，这个文件夹下的源文件以及目前位置“src/caffe”中包含的我还没有提到的所有.cpp文件就是caffe的核心目录下的核心代码了。</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h1 id="源码主要关系">源码主要关系</h1><p>如上所言我们现在可以知道，caffe核心中的核心是下面的文档和文件:（这部分目前不清楚的地方先参照别人的观点）</p>
-<ul>
-<li>blob[.cpp .h] 基本的数据结构Blob类[3]。</li>
-<li>common[.cpp .h] 定义Caffe类</li>
-<li>internal_thread[.cpp .h] 使用boost::thread线程库</li>
-<li>net[.cpp .h] 网络结构类Net</li>
-<li>solver[.cpp .h] 优化方法类Solver</li>
-<li>data_transformer[.cpp .h] 输入数据的基本操作类DataTransformer</li>
-<li>syncedmem[.cpp .h] 分配内存和释放内存类CaffeMallocHost，用于同步GPU，CPU数据</li>
-<li>layer_factory.cpp layer.h 层类Layer</li>
-<li><code>layers</code> 此文件夹下面的代码全部至少继承了类Layer</li>
-</ul>
-<h1 id="Caffe的官方说明">Caffe的官方说明</h1><p>根据Caffe<a href="http://caffe.berkeleyvision.org/tutorial/net_layer_blob.html" target="_blank" rel="external">官方文档</a>介绍，caffe大致可以分为三层结构blob，layer，net。数据的保存，交换以及操作都是以blob的形式进行的，layer是模型和计算的基础，net整和并连接layer。solver则是模型的优化求解。</p>
-<p>[1]: <a href="http://blog.csdn.net/lingerlanlan/article/details/38121443" target="_blank" rel="external">linger: 我所写的CNN框架 VS caffe</a><br>[2]: <a href="http://www.ibm.com/developerworks/cn/linux/l-cn-gpb/" target="_blank" rel="external">Google Protocol Buffer 的使用和原理</a><br>[3]: <a href="http://www.shwley.com/index.php/archives/64/" target="_blank" rel="external">caffe源码简单解析——Blob（1） </a></p>
+		<p>Welcome to <a href="http://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="http://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="http://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
+<h2 id="Quick_Start">Quick Start</h2><h3 id="Create_a_new_post">Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
+<h3 id="Run_server">Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
+<h3 id="Generate_static_files">Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
+<h3 id="Deploy_to_remote_sites">Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="http://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
   
 	</div>
 		<footer class="article-footer clearfix">
 
-  <div class="article-tags">
-  
-  <span></span> <a href="/tags/Caffe/">Caffe</a>
-  </div>
-
-
-<div class="article-categories">
-  <span></span>
-  <a class="article-category-link" href="/categories/LearningCaffe/">LearningCaffe</a>
-</div>
 
 
 
 <div class="article-share" id="share">
 
-  <div data-url="http://yoursite.com/2014/12/09/Caffe学习笔记1-安装以及代码结构/" data-title="Caffe学习笔记1-安装以及代码结构 | GanYuFei (甘宇飞)" data-tsina="null" class="share clearfix">
+  <div data-url="http://yoursite.com/2015/07/01/hello-world/" data-title="Hello World | GanYuFei (甘宇飞)" data-tsina="null" class="share clearfix">
   </div>
 
 </div>
@@ -201,19 +151,11 @@
 	
 <nav class="article-nav clearfix">
  
- <div class="prev" >
- <a href="/2014/12/09/Caffe学习笔记2-Caffe的三级结构-Blobs-Layers-Nets/" title="Caffe学习笔记2-Caffe的三级结构(Blobs,Layers,Nets)">
-  <strong>PREVIOUS:</strong><br/>
-  <span>
-  Caffe学习笔记2-Caffe的三级结构(Blobs,Layers,Nets)</span>
-</a>
-</div>
-
 
 <div class="next">
-<a href="/2014/11/23/Note/"  title="Note">
+<a href="/2015/02/26/近期DL重要论文整理长期更新/"  title="近期DL重要论文整理长期更新">
  <strong>NEXT:</strong><br/> 
- <span>Note
+ <span>近期DL重要论文整理长期更新
 </span>
 </a>
 </div>
@@ -230,7 +172,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装"><span class="toc-number">1.</span> <span class="toc-text">安装</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#目录结构"><span class="toc-number">2.</span> <span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#源码结构"><span class="toc-number">3.</span> <span class="toc-text">源码结构</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#源码主要关系"><span class="toc-number">4.</span> <span class="toc-text">源码主要关系</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Caffe的官方说明"><span class="toc-number">5.</span> <span class="toc-text">Caffe的官方说明</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Quick_Start"><span class="toc-number">1.</span> <span class="toc-text">Quick Start</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create_a_new_post"><span class="toc-number">1.1.</span> <span class="toc-text">Create a new post</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Run_server"><span class="toc-number">1.2.</span> <span class="toc-text">Run server</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Generate_static_files"><span class="toc-number">1.3.</span> <span class="toc-text">Generate static files</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Deploy_to_remote_sites"><span class="toc-number">1.4.</span> <span class="toc-text">Deploy to remote sites</span></a></li></ol></li></ol>
   </div>
 
 <div id="asidepart">
