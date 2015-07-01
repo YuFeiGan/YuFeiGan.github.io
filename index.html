@@ -101,9 +101,204 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2015/02/26/近期DL重要论文整理长期更新/" data-id="cibkqc0mn0003sz37ld3bbd49" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2015/02/26/近期DL重要论文整理长期更新/" data-id="cibkqceg30003tg37ia00g5ra" class="article-share-link">Share</a>
       
       
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-《Deep-Learning》-Bengio-读书笔记3-CNN" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/" class="article-date">
+  <time datetime="2015-02-20T07:43:28.000Z" itemprop="datePublished">2015-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Book/">Book</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/">《Deep Learning》(Bengio)读书笔记3-CNN</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此书尚未出版，该笔记仅供学习参考，原文见<a href="http://www.iro.umontreal.ca/~bengioy/dlbook/" target="_blank" rel="external">http://www.iro.umontreal.ca/~bengioy/dlbook/</a></p>
+<h1 id="Convolutional_Networks">Convolutional Networks</h1><h2 id="The_convolution_operation">The convolution operation</h2><p>Toeplitz matrix, Circulant matrix</p>
+<h2 id="Motivation">Motivation</h2><ul>
+<li>Sparse interactions: by making the kernel size smaller than the input.</li>
+<li>Parameter sharing: using the same parameter for more than one function in model.</li>
+<li><p>Equivariant representations: if the input changes, the output changes in the same way $f(g(x))=g(f(x))$, the convolution is not equivariant to some other transformations (change scale or rotation)</p>
+<p>  Using convolution is an infinitely strong prior probability distribution over the parameters of a layer — that is the function of the layer should learn contains only local interactions and is equivariant to translation.</p>
+</li>
+</ul>
+<p>The use of convolution constrains the class of functions that the layer can represent. If the necessary function does not have these properties, then using a convolutional layer will cause the model to have high training error.</p>
+<p>Matrix multiplication cannot be applied to fixed-shape matrix, but convolution could.</p>
+<h2 id="Pooling">Pooling</h2><p>CNN consists of three stages, 1.convolution, 2.nonlinear activation (sometimes called detector stage), 3.Pooling.</p>
+<p>Pooling helps to make the representation become invariant to small translations of input.<br>    Invariance to local translation can be a very useful property if we care more about whether come feature is present than exactly where it is.</p>
+<p>Invariance不关心特征位置只关心特征是否存在。</p>
+<pre><code>Using pooling is <span class="operator">an</span> infinitely strong prior that <span class="operator">the</span> <span class="function"><span class="keyword">function</span> <span class="title">the</span> <span class="title">layer</span> <span class="title">learns</span> <span class="title">must</span> <span class="title">be</span> <span class="title">invariant</span> <span class="title">to</span> <span class="title">small</span> <span class="title">translations</span></span>
+</code></pre><h2 id="Variants_of_the_basic_convolution_function">Variants of the basic convolution function</h2><p>differ form convolution operation in mathematical literature.</p>
+<ul>
+<li>it means many application of convolution</li>
+<li>the input is a grid of vector-valued observation instead of real values.</li>
+<li>be not guaranteed to be commutative.</li>
+</ul>
+<p>three special case of zero-padding</p>
+<ul>
+<li>valid convolution: kernel is contained within the image. $m-k+1\times m-k+1$</li>
+<li>same convolution: keep the size of the output equal to the size of the input. $m\times m$</li>
+<li>full convolution: be not guaranteed to be commutative. $m+k-1\times m+k-1$</li>
+</ul>
+<p>tiled convolution</p>
+<h2 id="Data_types">Data types</h2><h2 id="Efficient_convolution_algorithms">Efficient convolution algorithms</h2><p>Parallel computation.</p>
+<p>Using Fourier transform accelerate the speed of convolution</p>
+<p>Devising faster ways of performing convolution or approximate convolution without harming the accuracy if the model is an active area of research.</p>
+<p>In the commercial, deployment is more important than training.</p>
+<h2 id="Deep_learning_history">Deep learning history</h2><p>Conv-Nets are first really successful deep net.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/" data-id="cibkqceg50004tg37ct4unimz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-《Deep-Learning》-Bengio-读书笔记2-ML基本知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/" class="article-date">
+  <time datetime="2015-02-20T07:43:28.000Z" itemprop="datePublished">2015-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Book/">Book</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/">《Deep Learning》(Bengio)读书笔记2-ML基本知识</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此书尚未出版，该笔记仅供学习参考，原文见<a href="http://www.iro.umontreal.ca/~bengioy/dlbook/" target="_blank" rel="external">http://www.iro.umontreal.ca/~bengioy/dlbook/</a></p>
+<h1 id="Machine_Learning_Basics">Machine Learning Basics</h1><p>本部分介绍机器学习的基本概念。</p>
+<h2 id="what_is_learning?">what is learning?</h2><p>Definition of learning: “A computer program is said to learn from experience $E$ with respect to some class of task $T$ and proformance measure $P$, if its performance at tasks in $T$, as measured by $P$, improves with experience $E$”</p>
+<h3 id="The_task,_$T$">The task, $T$</h3><p>Classification, Classification with missing input, Regression, Transcription, Density estimation, Anomaly detection, Synthesis and sampling, Imputation of missing values.</p>
+<h3 id="The_proformance_measure,_$P$">The proformance measure, $P$</h3><p>accuracy of the model or the probability of the model to some examples.</p>
+<p>Using test data to evaluate the proformance.</p>
+<p>we always use loss to represent the cost associated with a particular event (such as a classification).</p>
+<p>the objective of learning is then to minimize the loss</p>
+<p>choice error as loss for classification tasks</p>
+<p>the choice of performance measure depend on the application.</p>
+<p>In order for a performance measure to be optimized directly. we almost always require a smooth signal — a gradient</p>
+<p>in place of the natural loss functions, we often use surrogate performance measure (also called surrogate loss functions) that are amenable for direct use as the objective function optimized with respect to the model parameters. </p>
+<h3 id="The_experience,_$E$">The experience, $E$</h3><p>example, label.</p>
+<p>design matrix — in some case, feature have different size</p>
+<h2 id="Generalization,_Capacity,_Overfitting_and_Underfitting">Generalization, Capacity, Overfitting and Underfitting</h2><h3 id="Generalization">Generalization</h3><p>generalization error.</p>
+<p>Formally, generalization performance is typically defined as the expected value of the chosen performance measure, taken over the probability distribution of interest.</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/" data-id="cibkqceg80009tg379obtfusz" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-《Deep-Learning》-Bengio-读书笔记1-DL简介" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/" class="article-date">
+  <time datetime="2015-02-20T07:43:28.000Z" itemprop="datePublished">2015-02-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Book/">Book</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/">《Deep Learning》(Bengio)读书笔记1-DL简介</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此书尚未出版，该笔记仅供学习参考，原文见<a href="http://www.iro.umontreal.ca/~bengioy/dlbook/" target="_blank" rel="external">http://www.iro.umontreal.ca/~bengioy/dlbook/</a></p>
+<p>[P2]早期的AI是以IBM为的深蓝代表一类的简单的AI。</p>
+<p>人的知识与经验是主观和直觉的，因此难以用一种正式的方法表达出来。电脑却恰恰需要各种形式的知识去做决策。</p>
+<p>几个AI项目曾经探索用正式语言的硬编码去描述知识。计算机可以运用逻辑推断法则通过这些正式语言推断陈述。但这些AI项目的均未成功，[P3]其中最有名的就是Cyc（人们用十分复杂的语言来准确的描述世界）。</p>
+<p>hard-code所面临的困难说明AI系统需要有能力从原始数据中去获得他们自己的知识。这种能力就称为ML，ML的引入让计算机应付真实世界的问题并做出近乎于主观的决策。</p>
+<p>LR是一种简单的ML算法，曾被来预测是否推荐做剖腹产另一种叫做朴素贝叶斯的算法可以分辨垃圾邮件。</p>
+<p>我们称执行学习过程的代理为Learning Machine或者Learner，它将训练数据作为输入，产生函数。</p>
+<p>这些简单的ML算法的性能，非常依赖于所给数据的表达。Represent中的每一部分信息就是feature。LR学习每个feature所对应的不同的产生效果。然而LR无法学习出哪些特征有用，哪些特征无用，比如说若输入是像素点，单个像素点对后面的结果无关轻重。</p>
+<p>这个对表达的依赖是伴随计算机科学的普遍现象，表达的选择对ML算法的选择有极大的影响。</p>
+<p>[P4]许多AI问题通过设计恰当的特征的到解决，然后把这些特征给一个简单的ML算法。[还有些问题不能通过特征解决？]</p>
+<p>然而对于有些问题，什么特征应该别提取显得非常困难。比如车的轮子。</p>
+<p>一种解决方案是，让ML不光学习Representation到output的映射，还学习表达本身。这种方法称为Representation Learning，RL的效果往往比hand-designed representation要好。它们同样允许AI系统在最小的人工干预下快速适应新的问题。</p>
+<p>[P5]当设计特征的时候我们的目标往往是分离解释观测数据的变量因素。这里的factor仅是影响源，通常不包含mutiplication。这样的factor通常不是通过直接观察得到的，而是存在于人的思想中用来解释或推断观测数据的原因。这些factor可以被理解为帮助我们理解数据中大量变量的概念或抽象。</p>
+<p>真实世界中的AI应用的一个主要困难是许多factors影响每一个我们所观测的数据。许多应用希望我们从大量的factor中解脱出来并且摈弃我们不在乎的factor。</p>
+<p>当然，从原始数据中提取high-level抽象特征十分困难（不少需要人类级别的理解）。RL这一看无法解决这个问题。</p>
+<p>DL解决这个RL中的核心问题通过引入更简单的表达。DL允许电脑建立由简单概念产生的复杂概念。</p>
+<p>DL的另一个远景是他允许计算机学习一个多部的计算机程序（没看明白？？）</p>
+<p>Depth在这里不是数学严格定义上的意思。在DL中它没有正式的定义。有些方法大概表达学习的次数多，另一些方法中指计算的概念深。因为简单概念可以理解为复杂概念。</p>
+<p>[P7]简而言之，DL是一种AI方法，ML的一种类型。DL is a particular kind of ML that achieves great power and flexibility by learning to represent the world as a nested hierarchy of concepts with each concept defined in relation to simpler concepts.</p>
+<p>[P9]DL在过去5年中，对工业界和学术界产生了极大的影响，DL涉及到Learning multiple levels of representation。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/" data-id="cibkqcega000ctg37j41srdr2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a></li></ul>
+
     </footer>
   </div>
   
@@ -159,7 +354,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/23/Note/" data-id="cibkqc0lu0000sz37du8oqzxl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/23/Note/" data-id="cibkqcef60000tg37mumt6rpr" class="article-share-link">Share</a>
       
       
     </footer>
@@ -200,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2014/11/23/Torch7-A-Matlab-like-Environment-for-Machine-Learning/" data-id="cibkqc0mp0004sz378wp57syu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2014/11/23/Torch7-A-Matlab-like-Environment-for-Machine-Learning/" data-id="cibkqcegc000ftg37xdx0afea" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Torch/">Torch</a></li></ul>
@@ -221,7 +416,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Categories</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Note/">Note</a><span class="category-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -230,7 +425,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li></ul>
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a><span class="tag-list-count">3</span></li></ul>
     </div>
   </div>
 
@@ -239,7 +434,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Torch/" style="font-size: 10px;">Torch</a>
+      <a href="/tags/Torch/" style="font-size: 10px;">Torch</a> <a href="/tags/《Deep-Learning》/" style="font-size: 20px;">《Deep Learning》</a>
     </div>
   </div>
 
@@ -248,7 +443,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">2</span></li></ul>
     </div>
   </div>
 
@@ -264,11 +459,19 @@
           </li>
         
           <li>
-            <a href="/2014/11/23/Note/">Note</a>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/">《Deep Learning》(Bengio)读书笔记3-CNN</a>
           </li>
         
           <li>
-            <a href="/2014/11/23/Torch7-A-Matlab-like-Environment-for-Machine-Learning/">Torch7 A Matlab-like Environment for Machine Learning</a>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/">《Deep Learning》(Bengio)读书笔记2-ML基本知识</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/">《Deep Learning》(Bengio)读书笔记1-DL简介</a>
+          </li>
+        
+          <li>
+            <a href="/2014/11/23/Note/">Note</a>
           </li>
         
       </ul>
