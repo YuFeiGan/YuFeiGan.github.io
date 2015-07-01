@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Code-Torch7-Learning torch-tutorials | GanYuFei (甘宇飞)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Torch7 代码入门级介绍代码地址：https://github.com/torch/tutorials 网站地址：http://code.madbits.com/wiki/doku.php?id=starttorch-tutorials 是网上不多的有关torch7的demo之一，本文主要以Deep Learning训练过程为切入点，介绍利用Torch7训练Deep Learning netw">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Code-Torch7-Learning torch-tutorials">
+<meta property="og:url" content="http://yoursite.com/2014/11/23/Code-Torch7-Learning-torch-tutorials/index.html">
+<meta property="og:site_name" content="GanYuFei (甘宇飞)">
+<meta property="og:description" content="Torch7 代码入门级介绍代码地址：https://github.com/torch/tutorials 网站地址：http://code.madbits.com/wiki/doku.php?id=starttorch-tutorials 是网上不多的有关torch7的demo之一，本文主要以Deep Learning训练过程为切入点，介绍利用Torch7训练Deep Learning netw">
+<meta property="og:updated_time" content="2014-11-27T03:57:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Code-Torch7-Learning torch-tutorials">
+<meta name="twitter:description" content="Torch7 代码入门级介绍代码地址：https://github.com/torch/tutorials 网站地址：http://code.madbits.com/wiki/doku.php?id=starttorch-tutorials 是网上不多的有关torch7的demo之一，本文主要以Deep Learning训练过程为切入点，介绍利用Torch7训练Deep Learning netw">
+  
+    <link rel="alternative" href="/atom.xml" title="GanYuFei (甘宇飞)" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">GanYuFei (甘宇飞)</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">To improve is to change, to perfect is to change often.</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Code-Torch7-Learning-torch-tutorials" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/11/23/Code-Torch7-Learning-torch-tutorials/" class="article-date">
+  <time datetime="2014-11-23T01:36:29.000Z" itemprop="datePublished">2014-11-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Code/">Code</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Code-Torch7-Learning torch-tutorials
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Torch7 代码入门级介绍<br>代码地址：<a href="https://github.com/torch/tutorials" target="_blank" rel="external">https://github.com/torch/tutorials</a> 网站地址：<a href="http://code.madbits.com/wiki/doku.php?id=start" target="_blank" rel="external">http://code.madbits.com/wiki/doku.php?id=start</a><br>torch-tutorials 是网上不多的有关torch7的demo之一，本文主要以Deep Learning训练过程为切入点，介绍利用Torch7训练Deep Learning network。<br>这里介绍 2_supervised\4_train.lua 中的核心函数 train( )<br>代码全文如下：（我把不重要的地方去掉了，由于CSDN对Lua的支持不太好，很多地方无法高亮）<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">train</span><span class="params">()</span></span>  </span><br><span class="line">  </span><br><span class="line">   <span class="comment">-- epoch tracker  </span></span><br><span class="line">   epoch = epoch <span class="keyword">or</span> <span class="number">1</span>  </span><br><span class="line">  </span><br><span class="line">   <span class="comment">-- shuffle at each epoch  </span></span><br><span class="line">   shuffle = torch.randperm(trsize)  </span><br><span class="line">  </span><br><span class="line">   <span class="comment">-- do one epoch  </span></span><br><span class="line">   <span class="built_in">print</span>(<span class="string">'==&gt; doing epoch on training data:'</span>)  </span><br><span class="line">   <span class="built_in">print</span>(<span class="string">"==&gt; online epoch # "</span> .. epoch .. <span class="string">' [batchSize = '</span> .. opt.batchSize .. <span class="string">']'</span>)  </span><br><span class="line">   <span class="keyword">for</span> t = <span class="number">1</span>,trainData:size(),opt.batchSize <span class="keyword">do</span>  </span><br><span class="line">      <span class="comment">-- disp progress  </span></span><br><span class="line">      xlua.progress(t, trainData:size())  </span><br><span class="line">  </span><br><span class="line">      <span class="comment">-- create mini batch  </span></span><br><span class="line">      <span class="keyword">local</span> inputs = &#123;&#125;  </span><br><span class="line">      <span class="keyword">local</span> targets = &#123;&#125;  </span><br><span class="line">      <span class="keyword">for</span> i = t,<span class="built_in">math</span>.min(t+opt.batchSize-<span class="number">1</span>,trainData:size()) <span class="keyword">do</span>  </span><br><span class="line">         <span class="comment">-- load new sample  </span></span><br><span class="line">         <span class="keyword">local</span> input = trainData.data[shuffle[i]]  </span><br><span class="line">         <span class="keyword">local</span> target = trainData.labels[shuffle[i]]  </span><br><span class="line">         <span class="keyword">if</span> opt.<span class="built_in">type</span> == <span class="string">'double'</span> <span class="keyword">then</span> input = input:double()  </span><br><span class="line">         <span class="keyword">elseif</span> opt.<span class="built_in">type</span> == <span class="string">'cuda'</span> <span class="keyword">then</span> input = input:cuda() <span class="keyword">end</span>  </span><br><span class="line">         <span class="built_in">table</span>.insert(inputs, input)  </span><br><span class="line">         <span class="built_in">table</span>.insert(targets, target)  </span><br><span class="line">      <span class="keyword">end</span>  </span><br><span class="line">  </span><br><span class="line">      <span class="comment">-- create closure to evaluate f(X) and df/dX  </span></span><br><span class="line">      <span class="keyword">local</span> feval = <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span>  </span><br><span class="line">                       <span class="comment">-- get new parameters  </span></span><br><span class="line">                       <span class="keyword">if</span> x ~= parameters <span class="keyword">then</span>  </span><br><span class="line">                          parameters:copy(x)  </span><br><span class="line">                       <span class="keyword">end</span>  </span><br><span class="line">  </span><br><span class="line">                       <span class="comment">-- reset gradients  </span></span><br><span class="line">                       gradParameters:zero()  </span><br><span class="line">  </span><br><span class="line">                       <span class="comment">-- f is the average of all criterions  </span></span><br><span class="line">                       <span class="keyword">local</span> f = <span class="number">0</span>  </span><br><span class="line">  </span><br><span class="line">                       <span class="comment">-- evaluate function for complete mini batch  </span></span><br><span class="line">                       <span class="keyword">for</span> i = <span class="number">1</span>,#inputs <span class="keyword">do</span>  </span><br><span class="line">                          <span class="comment">-- estimate f  </span></span><br><span class="line">                          <span class="keyword">local</span> output = model:forward(inputs[i])  </span><br><span class="line">                          <span class="keyword">local</span> err = criterion:forward(output, targets[i])  </span><br><span class="line">                          f = f + err  </span><br><span class="line">  </span><br><span class="line">                          <span class="comment">-- estimate df/dW  </span></span><br><span class="line">                          <span class="keyword">local</span> df_do = criterion:backward(output, targets[i])  </span><br><span class="line">                          model:backward(inputs[i], df_do)  </span><br><span class="line">                       <span class="keyword">end</span>  </span><br><span class="line">  </span><br><span class="line">                       <span class="comment">-- normalize gradients and f(X)  </span></span><br><span class="line">                       gradParameters:div(#inputs)  </span><br><span class="line">                       f = f/#inputs  </span><br><span class="line">  </span><br><span class="line">                       <span class="comment">-- return f and df/dX  </span></span><br><span class="line">                       <span class="keyword">return</span> f,gradParameters  </span><br><span class="line">                    <span class="keyword">end</span>  </span><br><span class="line">  </span><br><span class="line">      <span class="comment">-- optimize on current mini-batch  </span></span><br><span class="line">         optimMethod(feval, parameters, optimState)  </span><br><span class="line">   <span class="keyword">end</span>  </span><br><span class="line">  </span><br><span class="line">   <span class="comment">-- next epoch  </span></span><br><span class="line">   epoch = epoch + <span class="number">1</span>  </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>下面分段介绍<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = t,<span class="built_in">math</span>.min(t+opt.batchSize-<span class="number">1</span>,trainData:size()) <span class="keyword">do</span>  </span><br><span class="line">         <span class="comment">-- load new sample  </span></span><br><span class="line">         <span class="keyword">local</span> input = trainData.data[shuffle[i]]  </span><br><span class="line">         <span class="keyword">local</span> target = trainData.labels[shuffle[i]]  </span><br><span class="line">         <span class="keyword">if</span> opt.<span class="built_in">type</span> == <span class="string">'double'</span> <span class="keyword">then</span> input = input:double()  </span><br><span class="line">         <span class="keyword">elseif</span> opt.<span class="built_in">type</span> == <span class="string">'cuda'</span> <span class="keyword">then</span> input = input:cuda() <span class="keyword">end</span>  </span><br><span class="line">         <span class="built_in">table</span>.insert(inputs, input)  </span><br><span class="line">         <span class="built_in">table</span>.insert(targets, target)  </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>这部分实际上是选择一个batch作为训练最小单位。在Torch中一般用“table”数据结构保存数据。“table”是Lua下的一个数据结构，它比较特殊，可以用作数组，字典（哈希表），类等解构在这里<br>[plain] view plaincopy<br>table.insert(inputs, input)<br>实际上是讲一个batch的数据放在一个inputs里面，作为一次update的数据。同样targets保存了对应的label。</p>
+<p>然后是描述目标函数，描述了feval这个目标函数就可以用优化方法对feval进行优化求解，也就是对网络进行训练，下面介绍如何描述目标函数feval：<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> feval = <span class="function"><span class="keyword">function</span><span class="params">(x)</span></span>  </span><br><span class="line">.....  </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>下面是函数里面的代码说明<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> x ~= parameters <span class="keyword">then</span>   </span><br><span class="line">        parameters:copy(x)  </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>这里的parameters和下面的gradParameters都是通过函数model:getParameters()获得的，他们分表保存着model的权重参数以及梯度参数，代码我没有贴上来，这里说明一下<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">gradParameters:zero()</span><br></pre></td></tr></table></figure></p>
+<p>将梯度参数初始化为0<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">local</span> f = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p>f里面保存了平均criterions这个可以理解为误差。<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> i = <span class="number">1</span>,#inputs <span class="keyword">do</span>  </span><br><span class="line">        <span class="keyword">local</span> output = model:forward(inputs[i])              </span><br><span class="line">        <span class="keyword">local</span> err = criterion:forward(output, targets[i])    </span><br><span class="line">        f = f + err的loss  </span><br><span class="line">        <span class="keyword">local</span> df_do = criterion:backward(output, targets[i])  </span><br><span class="line">        model:backward(inputs[i], df_do)                                              </span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure></p>
+<p>model:forward()表示对model作正向传导得到output，criterion:forward()表示用criterion准则计算loss，这里的准则需要我们之前选择好。criterion:backward()用来计算梯度，这里返回的是最后一层的梯度即df_do，model:backward()函数即为CNN的BP算法反向传导梯度，返回值直接保存到gradParameters中。<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">gradParameters:div(#inputs)  </span><br><span class="line">f = f/#inputs</span><br></pre></td></tr></table></figure></p>
+<p>梯度和loss的规范化，这里gradParameters这个参数保存了上面获得的梯度返回<br><figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> f,gradParameters </span><br><span class="line">```  </span><br><span class="line">这里返回f和gradParameters的是因为优化函数规定了返回值。</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">好的，描述清楚了目标函数，下一步就是选择合适的方法求解了。</span><br><span class="line">``` lua</span><br><span class="line">optimMethod(feval, parameters, optimState)</span><br></pre></td></tr></table></figure></p>
+<p>这部分代码非常好理解，选择好了优化方法optimMethod后，就可以用optimMethod函数进行一次参数的优化求解，这里是操作一次optimMethod进行一次update，至于优化方法的类型以及参数的设置则保存在了optimMethod和optimState，这个将在后面的文档中介绍。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/11/23/Code-Torch7-Learning-torch-tutorials/" data-id="cibkqeuf2000hvl37qkjnn957" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Torch/">Torch</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/12/09/Caffe学习笔记1-安装以及代码结构/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Caffe学习笔记1-安装以及代码结构
+        
+      </div>
+    </a>
+  
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Book/">Book</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Code/">Code</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/LearningCaffe/">LearningCaffe</a><span class="category-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/BLAS/">BLAS</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Boost/">Boost</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Caffe/">Caffe</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Thread/">Thread</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Torch/">Torch</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/《Deep-Learning》/">《Deep Learning》</a><span class="tag-list-count">3</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/BLAS/" style="font-size: 10px;">BLAS</a> <a href="/tags/Boost/" style="font-size: 10px;">Boost</a> <a href="/tags/Caffe/" style="font-size: 20px;">Caffe</a> <a href="/tags/Thread/" style="font-size: 10px;">Thread</a> <a href="/tags/Torch/" style="font-size: 10px;">Torch</a> <a href="/tags/《Deep-Learning》/" style="font-size: 15px;">《Deep Learning》</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">December 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/11/">November 2014</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/02/26/近期DL重要论文整理长期更新/">近期DL重要论文整理长期更新</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记3-CNN/">《Deep Learning》(Bengio)读书笔记3-CNN</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记2-ML基本知识/">《Deep Learning》(Bengio)读书笔记2-ML基本知识</a>
+          </li>
+        
+          <li>
+            <a href="/2015/02/20/《Deep-Learning》-Bengio-读书笔记1-DL简介/">《Deep Learning》(Bengio)读书笔记1-DL简介</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/02/Caffe学习笔记5-BLAS与boost-thread加速/">Caffe学习笔记5-BLAS与boost::thread加速</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 YuFeiGan<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
