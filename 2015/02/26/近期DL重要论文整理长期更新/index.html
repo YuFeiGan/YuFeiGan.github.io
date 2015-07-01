@@ -112,7 +112,7 @@
     </p>
   <p class="article-time">
     <time datetime="2015-02-26T08:27:16.000Z" itemprop="datePublished">2015-02-26</time>
-    更新日期:<time datetime="2015-02-26T08:37:57.000Z" itemprop="dateModified">2015-02-26</time>
+    更新日期:<time datetime="2015-07-01T12:47:19.000Z" itemprop="dateModified">2015-07-01</time>
     
   </p>
 </header>
@@ -121,7 +121,7 @@
 		
 		<div id="toc" class="toc-article">
 			<strong class="toc-title">文章目錄</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#非线性单元："><span class="toc-number">1.</span> <span class="toc-text">非线性单元：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#增加模型深度："><span class="toc-number">2.</span> <span class="toc-text">增加模型深度：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#训练过程中的效率："><span class="toc-number">3.</span> <span class="toc-text">训练过程中的效率：</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#非线性单元："><span class="toc-number">1.</span> <span class="toc-text">非线性单元：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#增加模型深度："><span class="toc-number">2.</span> <span class="toc-text">增加模型深度：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#训练过程中的效率："><span class="toc-number">3.</span> <span class="toc-text">训练过程中的效率：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Detection"><span class="toc-number">4.</span> <span class="toc-text">Detection</span></a></li></ol>
 		</div>
 		
 		<h1 id="非线性单元：">非线性单元：</h1><p><code>Maxout</code> Ian J Goodfellow, David Warde-Farley, Mehdi Mirza, Aaron Courville, and Yoshua Bengio. Maxout networks. arXiv preprint arXiv:1302.4389, 2013.</p>
@@ -134,6 +134,9 @@
 <h1 id="训练过程中的效率：">训练过程中的效率：</h1><p><code>LReLU</code> Kaiming He, Xiangyu Zhang, Shaoqing Ren, and Jian Sun. Delving deep into rectifiers: Surpassing human-level performance on imagenet classification. arXiv preprint arXiv:1502.01852, 2015.</p>
 <p><code>BatchNorm</code> Sergey Ioffe, Christian Szegedy,. Batch Normalization: Accelerating Deep Network Training by Reducing Internal Covariate Shift. </p>
 <p>前者为参数提供了更加容易收敛初始值，后者防止训练过程中的梯度发散，两者都是解决同类问题，vanishing gradients（前）和exploding gradients（后）。</p>
+<h1 id="Detection">Detection</h1><p><code>RCNN</code> Ross Girshick, Jeff Donahue, Trevor Darrell, Jitendra Malik. Rich feature hierarchies for accurate object detection and semantic segmentation.<br>CV proposal + CNN feature extraction + SVM classifier</p>
+<p><code>Fast RCNN</code> Ross Girshick. Fast R-CNN.<br>CV proposal + CNN feature extraction + Regression Network Prediction</p>
+<p><code>Faster RCNN</code> Shaoqing Ren, Kaiming He, Ross Girshick, Jian Sun. Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks.<br>CNN Regression Network Proposal + CNN feature extraction + Regression Network Prediction</p>
   
 	</div>
 		<footer class="article-footer clearfix">
@@ -173,7 +176,7 @@
 
   <div id="toc" class="toc-aside">
   <strong class="toc-title">文章目錄</strong>
-  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#非线性单元："><span class="toc-number">1.</span> <span class="toc-text">非线性单元：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#增加模型深度："><span class="toc-number">2.</span> <span class="toc-text">增加模型深度：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#训练过程中的效率："><span class="toc-number">3.</span> <span class="toc-text">训练过程中的效率：</span></a></li></ol>
+  <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#非线性单元："><span class="toc-number">1.</span> <span class="toc-text">非线性单元：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#增加模型深度："><span class="toc-number">2.</span> <span class="toc-text">增加模型深度：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#训练过程中的效率："><span class="toc-number">3.</span> <span class="toc-text">训练过程中的效率：</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Detection"><span class="toc-number">4.</span> <span class="toc-text">Detection</span></a></li></ol>
   </div>
 
 <div id="asidepart">
@@ -221,10 +224,6 @@
 			<li><a href="/tags/CNN/" title="CNN">CNN<sup>1</sup></a></li>
 		
 			<li><a href="/tags/Caffe/" title="Caffe">Caffe<sup>6</sup></a></li>
-		
-			<li><a href="/tags/DeepNet/" title="DeepNet">DeepNet<sup>0</sup></a></li>
-		
-			<li><a href="/tags/PCANet/" title="PCANet">PCANet<sup>0</sup></a></li>
 		
 			<li><a href="/tags/Thread/" title="Thread">Thread<sup>1</sup></a></li>
 		
